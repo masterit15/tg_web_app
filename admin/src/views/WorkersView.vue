@@ -8,8 +8,11 @@
       <li class="user_list_item" v-for="item in workers" :key="item.id">
         <h4>{{ item.name }}</h4>
         <div class="user_list_item_actions">
-          <span class="user_list_item_actions_item edit"> <i class="fas fa-user-edit"></i></span>
-          <span class="user_list_item_actions_item delete"><i class="fas fa-user-times"></i></span>
+          <div class="user_list_item_actions_btn" @click="()=>{refs.userItemCtx.target.classList.toggle('active')}"><i class="fas fa-ellipsis-v"></i></div>
+          <ul class="user_list_item_actions_context" ref="userItemCtx">
+            <li><span class="user_list_item_actions_item edit"> <i class="fas fa-user-edit"></i></span></li>
+            <li><span class="user_list_item_actions_item delete"><i class="fas fa-user-times"></i></span></li>
+          </ul>
         </div>
       </li>
     </ul>

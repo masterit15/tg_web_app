@@ -17,6 +17,14 @@
         display: flex
         justify-content: center
         gap: 15px
+        &_context
+          display: flex
+          justify-content: flex-start
+          flex-direction: column
+          position: absolute
+          left: 0
+          top: 100%
+          background-color: #fff
         &_item
           width: 40px
           height: 40px
@@ -26,6 +34,7 @@
           justify-content: center
           align-items: center
           border-radius: 5px
+          
           &:hover
             text-shadow: 1px 1px white, -1px -1px #444
           &.edit
