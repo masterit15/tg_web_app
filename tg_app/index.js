@@ -9,9 +9,14 @@ bot.onText(/\/echo (.+)/, (msg, match) => {
   const resp = match[1]; // the captured "whatever"
   bot.sendMessage(chatId, resp);
 });
-bot.setMyCommands(COMMANDS);
+// bot.setMyCommands(COMMANDS);
+bot.setMenuButton()
 bot.onText(/\/start/, (msg) => {
-  
+  bot.setChatMenuButton({chat_id: msg.chat.id, menu_button: JSON.stringify({
+    type: 'web_app',
+    text: '2323',
+    web_app: {url:'https://webapp.amsvlad.ru' }
+  })})
   var options = { 
     reply_markup: JSON.stringify({ 
       keyboard: [ 
@@ -19,14 +24,12 @@ bot.onText(/\/start/, (msg) => {
         [{ text: 'Карта', }], 
         [{ text: 'Контакты', }] 
       ],
-      
     }) 
   }; 
   bot.sendMessage(msg.chat.id, "Добро пожаловать в наш магазин!", options);
 
 });
 bot.on('message', (msg) => {
-  console.log(msg);
   const menu = "Меню";
   const maps = "Карта";
   const contact = "Контакты";
