@@ -1,6 +1,6 @@
 const TelegramBot = require('node-telegram-bot-api');
 const COMMANDS = require('./commands')
-const token = '5329602637:AAE-pscUZiu7REFfdWQB4qwDvZsA6CRLnok';
+const token = '5311271693:AAEBXZfBZ1XUghjSXvqHgERSveOc8U1Liq8';
 
 const bot = new TelegramBot(token, { polling: true });
 
@@ -10,23 +10,20 @@ bot.onText(/\/echo (.+)/, (msg, match) => {
   bot.sendMessage(chatId, resp);
 });
 // bot.setMyCommands(COMMANDS);
-bot.setMenuButton()
+
 bot.onText(/\/start/, (msg) => {
-  bot.setChatMenuButton({chat_id: msg.chat.id, menu_button: JSON.stringify({
-    type: 'web_app',
-    text: '2323',
-    web_app: {url:'https://webapp.amsvlad.ru' }
-  })})
-  var options = { 
-    reply_markup: JSON.stringify({ 
-      keyboard: [ 
-        [{ text: 'Мы будем делать бабки', web_app: {url:'https://webapp.amsvlad.ru' }}], 
-        [{ text: 'Карта', }], 
-        [{ text: 'Контакты', }] 
-      ],
-    }) 
-  }; 
-  bot.sendMessage(msg.chat.id, "Добро пожаловать в наш магазин!", options);
+  // bot.setChatMenuButton(msg.chat.id, {menu_button: JSON.stringify({type: 'web_app', text: 'mmmm', web_app: {url:'https://webapp.amsvlad.ru' }})})
+  // var options = { 
+  //   reply_markup: JSON.stringify({ 
+  //     keyboard: [ 
+  //       [{ text: 'Мы будем делать бабки', web_app: {url:'https://webapp.amsvlad.ru' }}], 
+  //       [{ text: 'Карта', }], 
+  //       [{ text: 'Контакты', }] 
+  //     ],
+      
+  //   }) 
+  // }; 
+  // bot.sendMessage(msg.chat.id, "Добро пожаловать в наш магазин!", options);
 
 });
 bot.on('message', (msg) => {

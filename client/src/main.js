@@ -4,7 +4,7 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 import socketIO from './plugins/socket'
-
+console.log(window.Telegram.WebApp);
 const app = createApp(App)
 app.use(store)
 app.use(router)
