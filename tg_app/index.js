@@ -1,7 +1,5 @@
 const TelegramBot = require('node-telegram-bot-api');
-const COMMANDS = require('./commands')
 const token = '5311271693:AAEBXZfBZ1XUghjSXvqHgERSveOc8U1Liq8';
-
 const bot = new TelegramBot(token, { polling: true });
 
 bot.onText(/\/echo (.+)/, (msg, match) => {
@@ -9,7 +7,6 @@ bot.onText(/\/echo (.+)/, (msg, match) => {
   const resp = match[1]; // the captured "whatever"
   bot.sendMessage(chatId, resp);
 });
-// bot.setMyCommands(COMMANDS);
 
 bot.onText(/\/start/, (msg) => {
   // bot.setChatMenuButton(msg.chat.id, {menu_button: JSON.stringify({type: 'web_app', text: 'mmmm', web_app: {url:'https://webapp.amsvlad.ru' }})})
