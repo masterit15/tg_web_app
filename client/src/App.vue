@@ -1,16 +1,29 @@
 <template>
 <div>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+    <header class="header">
+      <div class="back_btn" v-if="pageNow != 'home'" @click="goBack()"><i class="fa-solid fa-arrow-left"></i></div>
+      <router-link v-if="pageNow != 'cart'" to="/cart" class="cart">
+        <span class="cart_icon"><i class="fa-solid fa-cart-shopping"></i></span>
+        <span class="cart_count" v-if="cart.length > 0">{{cart.length}}</span>
+      </router-link>
+      <div class="cart_total" v-if="totalPrice > 0 && pageNow == 'cart'">
+        Заказ на сумму: <span class="cart_total_price"><i class="fa-solid fa-ruble-sign"></i> <span id="value">{{displayNumber}}</span></span>
+      </div>
+    </header>
+    <main class="main">
+      <router-view/>
+    </main>
+    
+    <Navigation/>
   </div>
 </template>
 <script>
 // @ is an alias to /src
-
+import Navigation from '@/components/Navigation'
+import {mapGetters} from 'vuex'
+import mixins from '@/mixins'
 export default {
+  mixins: [mixins],
   sockets: {
     connect: function() {
       console.log("socket connected");
@@ -24,21 +37,23 @@ export default {
   mounted() {
     this.$socket.emit('clientJoined', 'Zalupa')
   },
+  computed: {
+    ...mapGetters(['cart']),
+    pageNow(){
+      return this.$route.name
+    }
+  },
+  components: {
+    Navigation
+  },
+  methods: {
+    goBack(){
+      this.$router.back()
+    },
+  },
 };
 </script>
 <style lang="sass">
 @import './sass/main'
-#app
-  font-family: Avenir, Helvetica, Arial, sans-serif
-  -webkit-font-smoothing: antialiased
-  -moz-osx-font-smoothing: grayscale
-  text-align: center
-  color: #2c3e50
-nav
-  padding: 30px
-  a
-    font-weight: bold
-    color: #2c3e50
-    &.router-link-exact-active
-      color: #42b983
+
 </style>

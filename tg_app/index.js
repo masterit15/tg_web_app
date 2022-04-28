@@ -9,21 +9,21 @@ bot.onText(/\/echo (.+)/, (msg, match) => {
 });
 
 bot.onText(/\/start/, (msg) => {
-  // bot.setChatMenuButton(msg.chat.id, {menu_button: JSON.stringify({type: 'web_app', text: 'mmmm', web_app: {url:'https://webapp.amsvlad.ru' }})})
-  // var options = { 
-  //   reply_markup: JSON.stringify({ 
-  //     keyboard: [ 
-  //       [{ text: 'Мы будем делать бабки', web_app: {url:'https://webapp.amsvlad.ru' }}], 
-  //       [{ text: 'Карта', }], 
-  //       [{ text: 'Контакты', }] 
-  //     ],
+  var options = { 
+    reply_markup: JSON.stringify({ 
+      keyboard: [ 
+        [{ text: 'Мы будем делать бабки', web_app: {url:'https://webapp.amsvlad.ru' }}], 
+        [{ text: 'Карта', }], 
+        [{ text: 'Контакты', }] 
+      ],
       
-  //   }) 
-  // }; 
-  // bot.sendMessage(msg.chat.id, "Добро пожаловать в наш магазин!", options);
+    }) 
+  }; 
+  bot.sendMessage(msg.chat.id, "Добро пожаловать в наш магазин!", options);
 
 });
 bot.on('message', (msg) => {
+  console.log(msg);
   const menu = "Меню";
   const maps = "Карта";
   const contact = "Контакты";
@@ -39,8 +39,7 @@ bot.on('message', (msg) => {
     bot.sendMessage(msg.chat.id, "Вы вошли Контакты");
   }
 });
-// bot.on('message', (msg) => {
-//   const chatId = msg.chat.id;
-//   bot.sendMessage(chatId, 'Received your message');
-//   bot.MenuButtonWebApp(chatId, {})
-// });
+bot.answerWebAppQuery('AAEMiFkNAAAAAAyIWQ3vo4tZ', {}, ['options']).then(res=>{
+  console.log(res);
+})
+

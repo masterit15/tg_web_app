@@ -1,0 +1,185 @@
+.product
+  &_cart
+    &_list
+      display: flex
+      justify-content: flex-start
+      flex-direction: column
+      gap: 20px
+      padding-bottom: 70px
+      .product
+        &_list
+          &_item
+            width: 100%
+            display: flex
+            flex-direction: row
+            justify-content: flex-start
+            gap: 15px
+            height: 100px
+            &_content
+              display: flex
+              flex-direction: column
+              justify-content: space-between
+              width: 100%
+            &_media
+              align-self: flex-start
+              width: 80px
+            &_like
+              right: 35px
+            &_delete
+              position: absolute
+              right: 10px
+              top: 10px
+              width: 20px
+              height: 20px
+              color: $text
+              display: flex
+              justify-content: center
+              align-items: center
+              font-size: 16px
+  &_detail
+    position: relative
+    display: flex
+    flex-direction: column
+    &_mid
+      display: flex
+      justify-content: space-between
+    &_like
+      position: absolute
+      right: 20px
+      top: 20px
+      width: 30px
+      height: 30px
+      color: $accent
+      display: flex
+      justify-content: center
+      align-items: center
+      font-size: 25px
+      &.active
+        color: $accent
+        
+    &_title
+    &_media
+      align-self: center
+      width: 200px
+    &_price
+      font-weight: bold
+      i
+        font-size: 14px
+  &_list
+    display: flex
+    justify-content: space-between
+    flex-wrap: wrap
+    padding: 15px 0 70px 0
+    gap: 20px
+    &_item
+      position: relative
+      width: 45%
+      height: 150px
+      background-color: #fff
+      border-radius: 20px
+      display: flex
+      flex-direction: column
+      justify-content: space-between
+      padding: 10px
+      a
+        display: flex
+        flex-direction: column
+        color: $text
+        text-decoration: none
+      &_like
+        position: absolute
+        right: 10px
+        top: 10px
+        width: 17px
+        height: 17px
+        color: $accent
+        &.active
+          color: $accent
+      &_title
+      &_media
+        align-self: center
+        width: 70px
+      &_price
+        font-weight: bold
+        i
+          font-size: 14px
+      &_bottom
+        display: flex
+        width: 100%
+        justify-content: space-between
+        align-items: center
+      &_bay
+        width: 65px
+        gap: 2px
+        display: flex
+        justify-content: flex-end
+        &_btn
+          width: 20px
+          height: 20px
+          border-radius: 5px
+          display: flex
+          justify-content: center
+          align-items: center
+          color: #fff
+          &.plus
+            background-color: $accent
+          &.minus
+            background-color: $red
+            display: none
+            &.active
+              display: flex
+        &_count
+          width: 20px
+          display: none
+          border: 1px solid rgba($accent,.3)
+          border-radius: 5px
+          text-align: center
+          &:focus
+            outline: none
+          &.active
+            display: block
+.cart
+  position: relative
+  color: $text
+  &_count
+    position: absolute
+    right: -5px
+    top: -5px
+    border-radius: 100%
+    padding: 2px
+    height: 20px
+    min-width: 20px
+    width: max-content
+    max-width: 20px
+    display: flex
+    justify-content: center
+    align-items: center
+    background-color: #ff4646
+    color: #fff
+    font-weight: bold
+  &_total
+    background-color: #fff
+    // position: fixed
+    // bottom: 0
+    // left: 0
+    // width: 100%
+    // height: 60px
+    padding: 0 20px
+    border-radius: 20px
+    // margin-top: 20px
+    display: flex
+    justify-content: space-between
+    align-items: center
+    gap: 20px
+    box-shadow: $sh
+    z-index: 20
+    &_price
+      
+      font-weight: bold
+      font-size: 18px
+    &_btn
+      background-color: $accent
+      border: none
+      color: #fff
+      padding: 8px 20px
+      border-radius: 30px
