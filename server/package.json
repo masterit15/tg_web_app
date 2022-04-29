@@ -4,6 +4,8 @@
     "start": "node index.js"
   },
   "dependencies": {
+    "@peculiar/webcrypto": "^1.3.3",
+    "axios": "^0.27.2",
     "bcrypt": "^5.0.1",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",

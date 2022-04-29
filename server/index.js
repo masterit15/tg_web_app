@@ -35,6 +35,7 @@ app.use('/api/food', require('./router/food.routes'));
 app.use('/api/user', require('./router/user.routes'));
 app.use('/api/table', require('./router/table.routes'));
 app.use('/api/refresh', require('./router/user.routes'));
+app.use('/api/bot', require('./router/bot.routes'));
 app.use(errorMiddleware);
 
 
