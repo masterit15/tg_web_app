@@ -1,9 +1,9 @@
-const Router = require('express').Router;
-const userController = require('../controllers/user.controller');
+import {Router} from 'express'
 const router = new Router();
-const {body} = require('express-validator');
-const authMiddleware = require('../middlewares/auth.middleware');
-const uploader = require('../components/multer');
+import userController from '../controllers/user.controller.js'
+import {body} from 'express-validator'
+import authMiddleware from '../middlewares/auth.middleware.js'
+import uploader from '../components/multer/index.js'
 
 router.post('/registration',
     uploader.single('avatar'),
@@ -15,4 +15,4 @@ router.post('/logout', userController.logout);
 router.get('/refresh', userController.refresh);
 router.get('/users', authMiddleware, userController.getUsers);
 
-module.exports = router
+export default router

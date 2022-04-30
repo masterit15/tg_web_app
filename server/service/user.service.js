@@ -1,7 +1,7 @@
-const UserModel = require('../model/users.model');
-const bcrypt = require('bcrypt');
-const tokenService = require('./token.service');
-const ApiError = require('../exceptions/api-error');
+import UserModel from '../model/users.model.js'
+import bcrypt from 'bcrypt'
+import tokenService from './token.service.js'
+import ApiError from '../exceptions/api-error.js'
 
 class UserService {
     async registration(name, login, avatar, password, permission) {
@@ -62,4 +62,4 @@ class UserService {
     }
 }
 
-module.exports = new UserService();
+export default new UserService();

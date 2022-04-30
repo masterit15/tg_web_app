@@ -1,5 +1,5 @@
-const FoodModel = require('../model/foods.model')
-const ApiError = require('../exceptions/api-error');
+import FoodModel from '../model/foods.model.js'
+import ApiError from '../exceptions/api-error.js'
 class FoodService {
   async add(name,images,price,weight,portion,properties,description) {
     const existingFood = await FoodModel.findOne({ where: { name }, raw: true })
@@ -24,4 +24,4 @@ class FoodService {
 
 }
 
-module.exports = new FoodService();
+export default new FoodService();

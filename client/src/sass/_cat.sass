@@ -1,5 +1,5 @@
 .menu
-  &_cat
+  &_scroll
     &_list
       display: flex
       justify-content: flex-start
@@ -20,10 +20,11 @@
         height: 35px
         border-radius: 50px
         box-shadow: 0 1px 4px 0px rgba(0,0,0,0.2)
-        background-color: #fff
+        border: 2px solid var(--tg-theme-button-color, #50a8eb)
+        background-color: var(--tg-theme-bg-color, #ffffff)
         &.active
-          background-color: $accent
-          color: #fff
+          background-color: var(--tg-theme-button-color, #50a8eb)
+          color: var(--tg-theme-button-text-color, #ffffff)
         &_wrap
           position: relative
           display: flex

@@ -1,5 +1,5 @@
-const sequelize = require("sequelize");
-const db = require('../db')
+import sequelize from 'sequelize'
+import db from '../db/index.js'
 const Menu = db.define("menu", {
     id: {
       type: sequelize.INTEGER,
@@ -11,4 +11,4 @@ const Menu = db.define("menu", {
     description: { type: sequelize.TEXT, allowNull: true},
   })
 
-module.exports = Menu
+export default Menu

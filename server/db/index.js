@@ -1,5 +1,5 @@
-const sequelize = require("sequelize");
-require('dotenv').config()
+import sequelize from "sequelize";
+import 'dotenv/config'
 const DBname = process.env.DBname
 const DBlogin = process.env.DBlogin
 const DBpassword = process.env.DBpassword
@@ -21,4 +21,4 @@ db.sync().then(result=>{
 .catch(err=> {
   console.log(err)
 });
-module.exports = db;
+export default db;

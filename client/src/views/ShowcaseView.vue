@@ -1,11 +1,11 @@
 <template>
   <div class="showcase">
-    <ul class="menu_cat_list">
-      <li class="menu_cat_list_item" 
+    <ul class="menu_scroll_list">
+      <li class="menu_scroll_list_item" 
       v-for="item in menuCat" :key="item.id">
-      <div class="menu_cat_list_item_wrap"  @click="filterItems($event, item.id)">
-        <img class="menu_cat_list_item_icon" :src="item.icon" alt="">
-        <div class="menu_cat_list_item_title">{{item.title}}</div>
+      <div class="menu_scroll_list_item_wrap"  @click="filterItems($event, item.id)">
+        <img class="menu_scroll_list_item_icon" :src="item.icon" alt="">
+        <div class="menu_scroll_list_item_title">{{item.title}}</div>
         </div>
       </li>
     </ul>
@@ -50,6 +50,10 @@ export default {
       ]
     }
   },
+  mounted() {
+    // const initData = "query_id=AAEMiFkNAAAAAAyIWQ2ydUE5&user=%7B%22id%22%3A223971340%2C%22first_name%22%3A%22Shalva%22%2C%22last_name%22%3A%22%22%2C%22language_code%22%3A%22ru%22%7D&auth_date=1651230821&hash=d7f0170b5c87eff0216a56474d5c4f611b20dcea47a173dbbd62bfa3aabb68e8"
+    // this.authBot(initData)
+  },
   computed: {
     ...mapGetters(['products']),
     items(){
@@ -61,11 +65,11 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['addCartProduct', 'deleteCartProduct']),
+    ...mapActions(['addCartProduct', 'deleteCartProduct', 'authBot']),
     filterItems(event, id){
-        let parent = event.target.closest('.menu_cat_list_item')
+        let parent = event.target.closest('.menu_scroll_list_item')
         if(!parent.classList.contains('active')){
-          let mm = document.querySelectorAll('.menu_cat_list_item')
+          let mm = document.querySelectorAll('.menu_scroll_list_item')
           mm.forEach(m=>m.classList.remove('active'))
           parent.classList.add('active')
           this.filterCat = id

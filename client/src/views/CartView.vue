@@ -22,6 +22,9 @@
         </div>
       </div>
     </div>
+    <div class="send_invoice" v-if="cart.length > 0">
+      <button class="send_invoice_btn"  @click="sendInvoiceToBot">Заказать</button>
+    </div>
   </div>
 </template>
 
@@ -35,19 +38,13 @@ export default {
     return {
     }
   },
-  mounted() {
-    const MainButtonParam = {
-      text: 'Заказать',// - текст кнопки;
-      color: '#469c77',// - цвет кнопки;
-      text_color: '#ffffff',// - цвет текста кнопки;
-      is_active: true,// - включить кнопку;
-      is_visible: true,// - показать кнопку.
+  watch:{
+    cart(){
+      if(this.cart.length > 0){
+        TWA.MainButton.setText('Заказать')
+        TWA.MainButton.show()
+      }
     }
-    window.Telegram.WebApp.MainButton.setParams(MainButtonParam)
-    window.Telegram.WebApp.MainButton.onClick(()=>{
-      window.Telegram.WebApp.sendData(window.Telegram.WebApp.initDataUnsafe)
-    })
-    
   },
   computed: {
     ...mapGetters(['cart']),
@@ -60,12 +57,17 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['sendInvoice']),
     deleteProduct(item){
       this.deleteCartProduct(item.id)
+    },
+    sendInvoiceToBot(){
+      const products = []
+      this.cart.forEach(product=>{
+        products.push({label: product.title, amount: `${product.price}00` })
+      })
+      this.sendInvoice(products)
     }
-  },
-  destroyed() {
-    window.Telegram.WebApp.MainButton.disable()
-  },
+  }
 };
 </script>

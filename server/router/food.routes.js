@@ -1,11 +1,13 @@
-const Router = require('express').Router;
-const foodController = require('../controllers/food.controller');
-const router = new Router();
-const authMiddleware = require('../middlewares/auth.middleware');
+import {Router} from 'express'
+const router = new Router()
+import foodController from '../controllers/food.controller.js'
 
-router.get('/', foodController.getFood);
-router.post('/add', authMiddleware, foodController.addFood);
-router.put('/:id', authMiddleware, foodController.changeFood);
-router.delete('/:id', authMiddleware, foodController.deleteFood);
+import authMiddleware from '../middlewares/auth.middleware.js'
 
-module.exports = router
+
+router.get('/', foodController.getFood)
+router.post('/add', authMiddleware, foodController.addFood)
+router.put('/:id', authMiddleware, foodController.changeFood)
+router.delete('/:id', authMiddleware, foodController.deleteFood)
+
+export default router

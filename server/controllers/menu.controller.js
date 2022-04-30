@@ -1,4 +1,4 @@
-const menuService = require('../service/menu.service');
+import menuService from '../service/menu.service.js'
 class MenuController {
   async addMenu(req, res, next) {
     try {
@@ -40,4 +40,4 @@ class MenuController {
 }
 
 
-module.exports = new MenuController();
+export default new MenuController();

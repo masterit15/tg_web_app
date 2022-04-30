@@ -1,5 +1,5 @@
-const sequelize = require("sequelize")
-const db = require('../db')
+import sequelize from 'sequelize'
+import db from '../db/index.js'
 const Users = db.define("users", {
     id: {
       type: sequelize.INTEGER,
@@ -15,4 +15,4 @@ const Users = db.define("users", {
     permission: {type: sequelize.ENUM, values:['Руководитель','Сотрудник'], defaultValue: 'Сотрудник'},
   })
 
-module.exports = Users
+export default Users

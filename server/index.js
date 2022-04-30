@@ -1,10 +1,10 @@
-const express = require('express')
-const db = require('./db')
-require('dotenv').config()
-const cors = require('cors')
-const cookieParser = require('cookie-parser')
-const errorMiddleware = require('./middlewares/error.middleware');
-const { app, server } = require('./socket')
+import express from 'express'
+import db from './db/index.js'
+import 'dotenv/config'
+import cors from 'cors'
+import cookieParser from 'cookie-parser'
+import errorMiddleware from './middlewares/error.middleware.js'
+import { app, server, } from './socket.js'
 
 app.use(express.json({ extended: true }))
 app.use(function (req, res, next) {
@@ -29,13 +29,19 @@ const corsOptions = {
     }
   }
 }
+import menuRoute from './router/menu.routes.js'
+import foodRoute from './router/food.routes.js'
+import userRoute from './router/user.routes.js'
+import tableRoute from './router/table.routes.js'
+import botRoute from './router/bot.routes.js'
+
 app.use(cors(corsOptions));
-app.use('/api/menu', require('./router/menu.routes'));
-app.use('/api/food', require('./router/food.routes'));
-app.use('/api/user', require('./router/user.routes'));
-app.use('/api/table', require('./router/table.routes'));
-app.use('/api/refresh', require('./router/user.routes'));
-app.use('/api/bot', require('./router/bot.routes'));
+app.use('/api/menu',  menuRoute);
+app.use('/api/food', foodRoute);
+app.use('/api/user', userRoute);
+app.use('/api/table', tableRoute);
+app.use('/api/refresh', userRoute);
+app.use('/api/bot', botRoute);
 app.use(errorMiddleware);
 
 

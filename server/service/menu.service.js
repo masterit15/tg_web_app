@@ -1,5 +1,5 @@
-const MenuModel = require('../model/menu.model')
-const ApiError = require('../exceptions/api-error');
+import MenuModel from '../model/menu.model.js'
+import ApiError from '../exceptions/api-error.js'
 class MenuService {
   async add(title, description) {
     const existingMenu = await MenuModel.findOne({ where: { title }, raw: true })
@@ -24,4 +24,4 @@ class MenuService {
 
 }
 
-module.exports = new MenuService();
+export default new MenuService();

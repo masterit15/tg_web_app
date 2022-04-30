@@ -1,6 +1,6 @@
-const sequelize = require("sequelize");
-const db = require('../db')
-const UserModel = require('../model/users.model')
+import sequelize from 'sequelize'
+import db from '../db/index.js'
+import UserModel from '../model/users.model.js'
 const Tables = db.define("tables", {
   id: {
     type: sequelize.INTEGER,
@@ -13,4 +13,4 @@ const Tables = db.define("tables", {
   qr_code: { type: sequelize.TEXT, allowNull: true},
 })
 UserModel.hasMany(Tables)
-module.exports = Tables
+export default Tables

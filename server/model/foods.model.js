@@ -1,6 +1,6 @@
-const sequelize = require("sequelize");
-const db = require('../db')
-const MenuModel = require('./menu.model')
+import sequelize from 'sequelize'
+import db from '../db/index.js'
+import MenuModel from './menu.model.js'
 const Foods = db.define("foods", {
     id: {
       type: sequelize.INTEGER,
@@ -17,4 +17,4 @@ const Foods = db.define("foods", {
     description: { type: sequelize.TEXT, allowNull: true},
   })
   MenuModel.hasMany(Foods);
-module.exports = Foods
+export default Foods

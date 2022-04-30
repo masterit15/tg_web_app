@@ -1,6 +1,4 @@
-const userService = require('../service/user.service');
-const ApiError = require('../exceptions/api-error');
-
+import userService from '../service/user.service.js'
 class UserController {
     async registration(req, res, next) {
         try {
@@ -58,4 +56,4 @@ class UserController {
 }
 
 
-module.exports = new UserController();
+export default new UserController();

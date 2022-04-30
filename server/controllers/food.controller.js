@@ -1,4 +1,4 @@
-const foodService = require('../service/food.service');
+import foodService from '../service/food.service.js'
 class FoodController {
   async addFood(req, res, next) {
     try {
@@ -73,4 +73,4 @@ class FoodController {
 }
 
 
-module.exports = new FoodController();
+export default new FoodController();

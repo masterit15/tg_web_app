@@ -12,4 +12,4 @@ class Clients {
     this.clients = this.clients.filter(c=>c!=client)
   }
 }
-module.exports = Clients
+export default Clients

@@ -1,6 +1,6 @@
-const sequelize = require("sequelize");
-const db = require('../db')
-const UserModel = require('../model/users.model')
+import sequelize from 'sequelize'
+import db from '../db/index.js'
+import UserModel from '../model/users.model.js'
 const Tokens = db.define("tokens", {
   id: {
     type: sequelize.INTEGER,
@@ -11,4 +11,4 @@ const Tokens = db.define("tokens", {
   refreshToken: { type: sequelize.TEXT, allowNull: true },
 })
 UserModel.hasMany(Tokens, { onDelete: "cascade"})
-module.exports = Tokens
+export default Tokens

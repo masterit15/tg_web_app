@@ -1,8 +1,9 @@
-const Router = require('express').Router;
-const botController = require('../controllers/bot.controller');
+import {Router} from 'express';
+import botController from '../controllers/bot.controller.js'
 const router = new Router();
 
 router.post('/login', botController.login);
 router.post('/logout', botController.logout);
+router.post('/sendinvoice', botController.sendInvoice);
 
-module.exports = router
+export default router

@@ -1,4 +1,4 @@
-const tableService = require('../service/table.service');
+import tableService from '../service/table.service.js'
 class TableController {
   async addTable(req, res, next) {
     try {
@@ -41,4 +41,4 @@ class TableController {
 }
 
 
-module.exports = new TableController();
+export default new TableController();

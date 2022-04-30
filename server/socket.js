@@ -1,12 +1,15 @@
-const app = require('express')()
-const server = require('http').createServer(app)
-const io = require('socket.io')(server, {
+import express from 'express'
+import http from 'http'
+import { Server } from "socket.io"
+const app = express()
+const server = http.createServer(app)
+const io = new Server(server, {
   cors: {
     origin: ["http://localhost:8080","http://localhost:8081"],
     // credentials: true
   }
 })
-const Clients = require('./clients')
+import Clients from './clients.js'
 const client = new Clients()
 // const User = require('./models/User')
 // const Notifycation = require('./models/Notifycation')
@@ -65,7 +68,7 @@ io.on('connection', socket => {
   })
 })
 
-module.exports = {
+export {
   io,
   app,
   server

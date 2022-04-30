@@ -1,5 +1,4 @@
-const botService = require('../service/bot.service');
-setInterval(botService.checkUpdates, 4000);
+import botService from '../service/bot.service.js'
 class BotController {
     async login(req, res, next) {
         try {
@@ -23,7 +22,21 @@ class BotController {
             next(e);
         }
     }
+
+    async sendInvoice(req, res, next){
+        try {
+            const {invoiceData} = req.body;
+            if (!invoiceData) {
+                res.sendStatus(400);
+                return;
+            }
+            const authData = await botService.sendInvoice(invoiceData);
+            return res.json(authData);
+        } catch (e) {
+            next(e);
+        }
+    }
 }
 
 
-module.exports = new BotController();
+export default new BotController();

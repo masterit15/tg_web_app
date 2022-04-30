@@ -1,7 +1,7 @@
-const TableModel = require('../model/tables.model')
-const ApiError = require('../exceptions/api-error');
-require('dotenv').config()
-const QRCode = require('qrcode')
+import TableModel from '../model/tables.model.js'
+import ApiError from '../exceptions/api-error.js'
+import 'dotenv/config'
+import QRCode from 'qrcode'
 class TableService {
   async add(name, booking) {
     const existingTable = await TableModel.findOne({ where: { name }, raw: true })
@@ -40,4 +40,4 @@ class TableService {
 
 }
 
-module.exports = new TableService();
+export default new TableService();
