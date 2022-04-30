@@ -15,18 +15,19 @@ app.use(function (req, res, next) {
 });
 
 app.use(cookieParser());
-const whitelist = [process.env.CLIENT_URL, process.env.ADMIN_URL]
+const whitelist = [process.env.CLIENT_URL, process.env.ADMIN_URL, ]
 const corsOptions = {
   methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH'],
   credentials: true,
   // origin: '*',
   origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback('Not allowed by CORS')
+    callback(null, true)
+    // if (whitelist.indexOf(origin) !== -1) {
+    //   callback(null, true)
+    // } else {
+    //   callback('Not allowed by CORS')
       
-    }
+    // }
   }
 }
 import menuRoute from './router/menu.routes.js'
@@ -34,7 +35,7 @@ import foodRoute from './router/food.routes.js'
 import userRoute from './router/user.routes.js'
 import tableRoute from './router/table.routes.js'
 import botRoute from './router/bot.routes.js'
-
+import otpRoute from './router/otp.routes.js'
 app.use(cors(corsOptions));
 app.use('/api/menu',  menuRoute);
 app.use('/api/food', foodRoute);
@@ -42,6 +43,7 @@ app.use('/api/user', userRoute);
 app.use('/api/table', tableRoute);
 app.use('/api/refresh', userRoute);
 app.use('/api/bot', botRoute);
+app.use('/api/otp', otpRoute);
 app.use(errorMiddleware);
 
 

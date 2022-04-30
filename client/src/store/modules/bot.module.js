@@ -1,6 +1,5 @@
 import TWA from "@/bot";
 import $api from "@/api"
-console.log(TWA);
 export default {
   state: {
     // cart: []

@@ -1,9 +1,7 @@
-import TelegramBot from 'node-telegram-bot-api'
 import { Crypto } from '@peculiar/webcrypto'
-const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true })
+import bot from '../components/telegram/index.js';
 const crypto = new Crypto();
 const APP_BASE_URL = "https://webapp.amsvlad.ru/"
-
 
 bot.onText(/\/start/, (msg) => {
   var options = {
