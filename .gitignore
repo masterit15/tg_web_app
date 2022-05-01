@@ -1,6 +1,6 @@
 .DS_Store
 client/node_modules/
-admin/node_modules/
+server/admin/node_modules/
 server/node_modules/
 tg_app/node_modules/
 

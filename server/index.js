@@ -26,7 +26,6 @@ const corsOptions = {
     //   callback(null, true)
     // } else {
     //   callback('Not allowed by CORS')
-      
     // }
   }
 }
@@ -46,6 +45,12 @@ app.use('/api/bot', botRoute);
 app.use('/api/otp', otpRoute);
 app.use(errorMiddleware);
 
+if (process.env.NODE_ENV === 'production') {
+  app.use('/admin', express.static(path.join(__dirname, 'admin', 'dist')))
+  app.get('*', (req, res) => {
+      res.sendFile(path.resolve(__dirname, 'admin', 'dist', 'index.html'))
+  })
+}
 
 const PORT = process.env.PORT || '5000'
 const HOST = process.env.HOST || 'localhost' //'0.0.0.0'
