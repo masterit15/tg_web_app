@@ -1,7 +1,11 @@
 {
   "scripts": {
-    "dev": "nodemon --experimental-modules index.js",
-    "start": "node --experimental-modules index.js"
+    "start": "NODE_ENV=production node --experimental-modules app.js",
+    "server": "nodemon --experimental-modules index.js",
+    "admin": "npm run serve --prefix admin",
+    "admin:install": "npm install --prefix web",
+    "admin:build": "npm run build --prefix web",
+    "dev": "cross-env NODE_ENV=development concurrently \"npm run server\" \"npm run admin\""
   },
   "type": "module",
   "dependencies": {
@@ -24,5 +28,9 @@
     "sequelize": "^6.17.0",
     "socket.io": "^4.4.1",
     "web-push": "^3.4.5"
+  },
+  "devDependencies": {
+    "concurrently": "^7.1.0",
+    "cross-env": "^7.0.3"
   }
 }
