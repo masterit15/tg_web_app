@@ -1,5 +1,6 @@
 <template>
   <div class="view_cart">
+    <pre>{{log}}</pre>
     <div class="product_cart_list">
       <div class="product_list_item" v-for="item in cart" :key="item.id">
         <span class="product_list_item_like" @click="like($event,item)"><i class="fa-regular fa-heart"></i></span>
@@ -31,30 +32,26 @@
 <script>
 import {mapGetters, mapActions} from 'vuex'
 import mixins from '@/mixins'
+import TWA from '@/bot'
 export default {
   mixins: [mixins],
   name: "cart",
   data() {
     return {
+      log: {}
     }
   },
   watch:{
-    cart(){
+    totalPrice(){
       if(this.cart.length > 0){
         TWA.MainButton.setText('Заказать')
         TWA.MainButton.show()
+        this.log = TWA.MainButton
       }
     }
   },
   computed: {
     ...mapGetters(['cart']),
-    totalPrice(){
-      let total = 0
-      this.cart.forEach(ce => {
-        total += ce.price * ce.count
-      });
-      return total
-    }
   },
   methods: {
     ...mapActions(['sendInvoice']),
@@ -64,7 +61,11 @@ export default {
     sendInvoiceToBot(){
       const products = []
       this.cart.forEach(product=>{
-        products.push({label: product.title, amount: `${product.price}00` })
+        if(product.count > 1){
+          products.push({label: `${product.title} ${product.count}шт.`, amount: `${product.count*product.price}00` })
+        }else{
+          products.push({label: product.title, amount: `${product.price}00` })
+        }
       })
       this.sendInvoice(products)
     }

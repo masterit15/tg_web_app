@@ -1,6 +1,7 @@
 import sequelize from 'sequelize'
 import db from '../db/index.js'
 import MenuModel from './menu.model.js'
+import OrderModel from './orders.model.js'
 const Foods = db.define("foods", {
     id: {
       type: sequelize.INTEGER,
@@ -17,4 +18,5 @@ const Foods = db.define("foods", {
     description: { type: sequelize.TEXT, allowNull: true},
   })
   MenuModel.hasMany(Foods);
+  OrderModel.hasMany(Foods)
 export default Foods

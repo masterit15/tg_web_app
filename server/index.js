@@ -22,12 +22,12 @@ const corsOptions = {
   credentials: true,
   // origin: '*',
   origin: function (origin, callback) {
-    callback(null, true)
-    // if (whitelist.indexOf(origin) !== -1) {
-    //   callback(null, true)
-    // } else {
-    //   callback('Not allowed by CORS')
-    // }
+    // callback(null, true)
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback('Not allowed by CORS')
+    }
   }
 }
 import menuRoute from './router/menu.routes.js'
@@ -45,12 +45,12 @@ app.use('/api/refresh', userRoute);
 app.use('/api/bot', botRoute);
 app.use('/api/otp', otpRoute);
 app.use(errorMiddleware);
-// if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production') {
   app.use('/admin', express.static(path.join(path.dirname('admin'), 'admin', 'dist')))
   app.get('*', (req, res) => {
       res.sendFile(path.resolve(path.dirname('admin'), 'admin', 'dist', 'index.html'))
   })
-// }
+}
 
 const PORT = process.env.PORT || '5000'
 const HOST = process.env.HOST || 'localhost' //'0.0.0.0'

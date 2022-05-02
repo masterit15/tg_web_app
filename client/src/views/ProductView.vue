@@ -17,23 +17,35 @@
               </div>
               </li>
           </ul>
-          <button class="btn">Добавить в корзину</button>
+          <div class="product_list_item_bay">
+            <span class="product_list_item_bay_btn minus" :class="{active: isCart(product)}" @click="bayCount($event, 'minus', product)"><i class="fa-solid fa-minus"></i></span>
+            <input class="product_list_item_bay_count" type="text" v-model="count" :class="{active: isCart(product)}"/>
+            <span class="product_list_item_bay_btn plus" :class="{active: isCart(product)}" @click="bayCount($event, 'plus', product)"><i class="fa-solid fa-plus"></i></span>
+          </div>
         </div>
     </div>
   </div>
 </template>
 <script>
 import {mapGetters} from 'vuex'
+import mixins from '@/mixins'
 export default {
+  mixins: [mixins],
+  data() {
+    return {
+      count: 0
+    }
+  },
   computed: {
-    ...mapGetters(['products']),
+    ...mapGetters(['products', 'cart']),
     product(){
       if(this.$route.params.id){
         return this.products.filter(p=>p.id == this.$route.params.id)[0]
       }else{
         return 'this.products'
       }
-    }
+    },
+
   },
   methods: {
     filterItems(event, id){
@@ -43,6 +55,15 @@ export default {
         }else{
           parent.classList.remove('active')
         }
+    },
+    isCart(){
+      let cart = JSON.parse(JSON.stringify(this.cart))
+      let product = cart.find(p=>p.id == this.$route.params.id)
+      if(product){
+        this.count = product.count
+        return Number(product.count)
+      }
+      return false
     },
     like(event,product){
       let parent = event.target.closest('.product_detail_like')

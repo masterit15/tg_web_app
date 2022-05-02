@@ -22,6 +22,7 @@
 import Navigation from '@/components/Navigation'
 import {mapGetters} from 'vuex'
 import mixins from '@/mixins'
+import TWA from "@/bot";
 export default {
   mixins: [mixins],
   sockets: {
@@ -35,7 +36,15 @@ export default {
     }
   },
   mounted() {
-    this.$socket.emit('clientJoined', 'Zalupa')
+    console.log();
+    let user = {
+                id: 223971340,
+                first_name: "Shalva",
+                last_name: "",
+                language_code: "ru",
+                source: 'tg'
+                }
+    this.$socket.emit('clientJoined', user)
   },
   computed: {
     ...mapGetters(['cart']),

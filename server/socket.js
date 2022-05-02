@@ -18,42 +18,23 @@ const client = new Clients()
 io.on('connection', socket => {
   // срабатывает при входе
   socket.on('clientJoined', async data => {
-    client.addClient(socket.id)
+    const user = data
+    user.socket = socket.id
+    client.addClient(user)
     // let user = await User.findOne({ where: { id: data.userId } }); 
     // user.online = "Y";
     // await user.save();
     console.log(client.getClients());
     socket.emit('clientJoined', client.getClients())
   })
+
   // срабатывает при выходе
   socket.on('userLeft', async data => {
     // let user = await User.findOne({ where: { id: data.userId } }); 
     // user.online = "N";
     // await user.save();
   })
-  // срабатывает при входе
-  socket.on('newClaimNotified', async data => {
-    // console.log(data)
-    // Notifycation.create({
-    //   title: 'Поступила новая заявка!',
-    //   text: '',
-    //   date: new Date(),
-    //   event: 'claim',
-    //   recipients: data.departamentId,
-    //   read: [data.userId],
-    // }).then(notify => {
-    //   console.log('notify', notify.dataValues)
-    //   socket.broadcast
-    //     .to(data.departamentId)
-    //     .emit('notifications', `Данные с сервера ${data}`)
-    // }).catch(err=>console.log(err))
-    
-    // const payload = JSON.stringify({ title: 'Поступила новая заявка!', body: 'testtesttets!' });
-    // const user = await User.findOne({where: { id: data.userId }, raw: true})
-    // webpush.sendNotification(user.subscription, payload).catch(error => {
-    //   console.error(error.stack);
-    // });
-  })
+
   // срабатывает при отключении
   socket.on('disconnect', () => {
     client.deleteClient(socket.id)

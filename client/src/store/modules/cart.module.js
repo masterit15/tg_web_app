@@ -20,6 +20,9 @@ export default {
     }
   },
   actions: {
+    SOCKET_sendOrders({}, msg){
+      console.log('SOCKET_sendOrders', msg);
+    },
     addCartProduct({ commit }, product) {
       commit('setCartProduct', product)
     },

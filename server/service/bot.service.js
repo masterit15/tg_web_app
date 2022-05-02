@@ -1,5 +1,8 @@
 import { Crypto } from '@peculiar/webcrypto'
 import bot from '../components/telegram/index.js';
+import {io} from '../socket.js'
+import Clients from '../clients.js';
+const client = new Clients()
 const crypto = new Crypto();
 const APP_BASE_URL = "https://webapp.amsvlad.ru/"
 
@@ -35,8 +38,30 @@ async function validate(data, botToken) {
   // console.log('hex',hex);
   return data.hash === hex
 }
+// bot.on('callback_query', function (msg) {
+//   console.log(msg);
+// });
+bot.on('pre_checkout_query', (msg) => {
+  console.log('pre_checkout_query',msg);
+  bot.answerPreCheckoutQuery(msg.id, true)
+}) // ответ на предварительный запрос по оплате
+
+// bot.on('successful_payment', async (msg, next) => { // ответ в случае положительной оплаты
+//   console.log('successful_payment',msg);
+//   bot.sendMessage(msg.chat.id, "Спасибо заказ принят");
+// })
+bot.on('pre_checkout_query', (msg) => {
+  console.log('pre_checkout_query',msg);
+  bot.answerPreCheckoutQuery(msg.id, true)
+}) // ответ на предварительный запрос по оплате
+bot.on('successful_payment', async (msg, next) => { // ответ в случае положительной оплаты
+  console.log('successful_payment',msg);
+  bot.sendMessage(msg.chat.id, "Спасибо заказ принят");
+  let user = client.getClientTg(msg.chat.id)
+  io.to(user.socket).emit('sendOrders', msg);
+})
 bot.on('message', async (msg) => {
-  console.log(msg);
+  console.log('message',msg);
   const menu = "Меню";
   const maps = "Карта";
   const contact = "Контакты";
@@ -69,16 +94,19 @@ class BotService {
     const {id, prices} = invoiceParam
     const title = 'Готовая кухня'
     const description = 'Готовая кухня на заказ'
-    const payload = "12345" + Date.now() + "pay"
-    const providerToken = process.env.STRIPE_API_TOKEN
-    const startParameter = "12345" + Date.now() + "pay"
+    const payload = `${id}_${Date.now()}_pay`
+    const providerToken = process.env.STRIPE_API_SBER
+    const startParameter = 'get_access'
     const currency = "RUB"
     const option = {
       provider_data: {name: 'sber'},
       need_phone_number: true,
+      // need_shipping_address: true,
+      need_name: true,
+      // is_flexible: true,
       photo_url: 'https://kartinkin.net/uploads/posts/2021-03/thumbs/1617150508_2-p-burger-krasivo-2.jpg',
-      photo_width: 300,
-      photo_height: 270,
+      photo_width: 500, // Ширина фото
+      photo_height: 281, // Длина фото
     }
     bot.sendInvoice(id, title, description, payload, providerToken, startParameter, currency, prices, option);
   }
