@@ -11,6 +11,47 @@ body
 .row
   display: flex
   justify-content: flex-start
+.btn
+  &_circle
+    cursor: pointer
+    border: none
+    width: 50px
+    height: 50px
+    border-radius: 100%
+    background-color: $dark
+    display: flex
+    justify-content: center
+    align-items: center
+    position: relative
+    &.notify
+      // & .count
+      //   background-color: $green
+    & .count
+      position: absolute
+      left: 30px
+      top: 30px
+      width: 25px
+      height: 25px
+      display: flex
+      justify-content: center
+      align-items: center
+      border-radius: 100%
+      background-color: $red
+      color: #fff
+    &.logout
+      & .fa
+        color: $red
+      &:hover
+        & .fa
+          color: $red
+          text-shadow: $red 0px 0px 30px
+    &:hover
+      & .fa
+        color: $green
+        text-shadow: $green 0px 0px 30px
+    & .fa
+      color: $darkText
+      font-size: 1.5rem
 #app
   position: relative
   width: 100%

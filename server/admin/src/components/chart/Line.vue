@@ -1,6 +1,6 @@
 <template>
   <div class="chart_line">
-    <h1>График продаж</h1>
+    <h3>График продаж</h3>
     <canvas id="line-chart"></canvas>
   </div>
 </template>
@@ -9,58 +9,21 @@
 // DataPage.vue
 import {
   Chart,
-  LineController,
-  LineElement,
-  PointElement,
-  LinearScale,
-  CategoryScale,
-  Title,
-} from "chart.js";
+  registerables} from "chart.js";
 
-Chart.register(LineController, LineElement, PointElement, LinearScale, Title, CategoryScale);
+Chart.register(...registerables);
 export default {
   name: "LineChart",
-  data() {
-    return {
-      chartData: {
-        labels: [
-          "Янв",
-          "Фев",
-          "Мар",
-          "Апр",
-          "Май",
-          "Июн",
-          "Июл",
-          "Авг",
-          "Сен",
-          "Окт",
-          "Ноя",
-          "Дек",
-        ],
-        datasets: [
-          {
-            label: "Количество заказов",
-            backgroundColor: "#f87979",
-            data: [
-              1290, 1789, 1902, 1100, 895, 2459, 1678, 2100, 678, 1569, 1290,
-              1877,
-            ],
-            // backgroundColor: gradient,
-            pointBackgroundColor: "#14C458",
-            borderWidth: 3,
-            borderColor: "#14C458",
-            tension: 0.9,
-          },
-        ],
-      },
-    };
-  },
   mounted() {
     const chart = document.getElementById("line-chart").getContext("2d"),
-                  gradient = chart.createLinearGradient(0, 233, 0, 450);
-                  gradient.addColorStop(0, "rgba(36, 180, 171, 0.7)");
-                  gradient.addColorStop(0.5, "rgba(36, 180, 171, 0.4)");
-                  gradient.addColorStop(1, "rgba(36, 180, 171, 0.1)");
+                  gradientGreen = chart.createLinearGradient(0, 200, 0, 300);
+                  gradientGreen.addColorStop(0, "rgba(20, 196, 88, 0.3)");
+                  gradientGreen.addColorStop(0.5, "rgba(20, 196, 88, 0.1)");
+                  gradientGreen.addColorStop(1, "rgba(20, 196, 88, 0)");
+    const gradientRed = chart.createLinearGradient(0, 200, 0, 300);
+                  gradientRed.addColorStop(0, "rgba(248, 62, 85, 0.3)");
+                  gradientRed.addColorStop(0.5, "rgba(248, 62, 85, 0.1)");
+                  gradientRed.addColorStop(1, "rgba(248, 62, 85, 0)");
     const data = {
        labels: [
           "Янв",
@@ -76,32 +39,33 @@ export default {
           "Ноя",
           "Дек",
         ],
-      BackgroundColor: "#14C458",
       datasets: [
         {
-          label: "Прошлый год",
+          label: "Некущий год",
           fill: true,
-          BackgroundColor: "#14C458",
-          pointBackgroundColor: "#14C458",
+          backgroundColor: gradientGreen,
+          pointBackgroundColor: "rgba(20, 196, 88, 1)",
+          pointBorderColor: "#ffffff",
+          pointBorderWidth: 3,
+          pointRadius: 5,
           borderWidth: 3,
-          borderColor: "#14C458",
-          data: [1290, 1789, 1902, 1100, 895, 2459, 1678, 2100, 678, 1569, 1290,1877],
+          borderColor: "rgba(20, 196, 88, 1)",
+          data: [100,110,140,120,130,100,120,160,130,140,134,190],
           min: 0,
           yAxisID: "yAxis",
           xAxisID: "xAxis",
         },
         {
-          label: "Текущий год",
-          fill: {
-                target: 'origin',
-                above: 'rgb(255, 0, 0)',   // Area will be red above the origin
-                below: 'rgb(0, 0, 255)'    // And blue below the origin
-              },
-          BackgroundColor: "#14C458",
-          pointBackgroundColor: "#14C458",
+          label: "Прошлый год",
+          fill: true,
+          backgroundColor: gradientRed,
+          pointBackgroundColor: "rgba(248, 62, 85, 1)",
+          pointBorderColor: "#ffffff",
+          pointBorderWidth: 3,
+          pointRadius: 5,
           borderWidth: 3,
-          borderColor: "#14C458",
-          data: [1000, 1100, 1100, 1200, 1300, 1200, 1200, 1100, 1300, 1400, 1500,1100],
+          borderColor: "rgba(248, 62, 85, 1)",
+          data: [150,104,110,120,130,120,120,110,130,140,150,110],
           min: 0,
           yAxisID: "yAxis",
           xAxisID: "xAxis",
@@ -110,10 +74,11 @@ export default {
     };
     const options = {
       responsive: true,
-      maintainAspectRatio: true,
+      maintainAspectRatio: false,
+      aspectRatio: 4,
       animation: {
         easing: "easeInOutQuad",
-        duration: 2000,
+        duration: 800,
       },
       chartArea: {
         backgroundColor: 'rgba(251, 85, 85, 0.4)'
@@ -121,7 +86,7 @@ export default {
       scales: {
         yAxis: {
           ticks: {
-            // stepSize: 120
+            // stepSize: 50
           },
           grid: {
             color: "#48474F",

@@ -4,6 +4,7 @@
       <BarChart/>
       <LineChart/>
     </div>
+    
   </div>
 </template>
 
