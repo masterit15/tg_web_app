@@ -5,7 +5,7 @@ class OtpController {
   async send(req, res, next) {
     try {
         const adminID = 223971340
-        bot.sendMessage(adminID, `<a href=\"https://webapp.amsvlad.ru/api/otp?verify=${otp.token()}\">Авторизоватся</a>`,{parse_mode : "HTML"})
+        bot.sendMessage(adminID, `Одноразовый пароль: \n ${otp.token()}`,{parse_mode : "HTML"})
       return res.json(otp.token());
     } catch (e) {
       next(e);

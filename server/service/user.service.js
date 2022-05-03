@@ -1,5 +1,6 @@
 import UserModel from '../model/users.model.js'
 import bcrypt from 'bcrypt'
+import otp from '../components/otp/index.js'
 import tokenService from './token.service.js'
 import ApiError from '../exceptions/api-error.js'
 
@@ -15,7 +16,7 @@ class UserService {
     }
 
 
-    async login(login, password) {
+    async login(login, password, otpvalue) {
         const hashPassword = await bcrypt.hash('admin123', 3);
         const admin = await UserModel.findOne({where: {login: 'admin'}, raw: true})
         if (!admin) {
@@ -28,6 +29,11 @@ class UserService {
         const isPassEquals = await bcrypt.compare(password, user.password);
         if (!isPassEquals) {
             throw ApiError.BadRequest('Неверный пароль');
+        }
+        const isOtpValid = otp.isValid(otpvalue)
+        console.log(isOtpValid);
+        if (!isOtpValid) {
+            throw ApiError.BadRequest('Неверный или просроченный одноразовый пароль');
         }
         const tokens = tokenService.generateTokens({...user});
 

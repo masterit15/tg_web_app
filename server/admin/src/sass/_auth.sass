@@ -10,21 +10,108 @@
   &_form
     width: 500px
     height: 500px
-    background-color: rgba(#000, 0.3)
-    backdrop-filter: blur(10px)
     display: flex
     justify-content: center
     align-items: center
     flex-direction: column
     border-radius: 20px
     box-shadow: 0 3px 20px #00000062
-    border-top: 1px solid #8b8b8b85
-    border-left: 1px solid #8b8b8b85
-    border-bottom: 1px solid #61616185
-    border-right: 1px solid #61616185
     gap: 30px
-    input
-      width: 100%
-      max-width: 320px
+    .btn
+      cursor: pointer
+      background-color: $green
+      color: #fff
+      font-size: 18px
+      font-weight: bold
+      text-transform: uppercase
+      width: 170px
+      height: 38px
+      display: flex
       border: none
-      background-color: transpare
+      border-radius: $borderRadius
+      justify-content: center
+      align-items: center
+    .field_group
+      width: 300px
+      position: relative
+      .border
+        position: absolute
+        left: 0
+        right: 0
+        bottom: -2px
+        margin: auto
+        width: 100%
+        height: 2px
+        background-color: $dark
+        &::before
+          content: ''
+          position: absolute
+          left: 0
+          right: 0
+          bottom: 0
+          margin: auto
+          width: 0%
+          height: 100%
+          background-color: $green
+        // &::after
+        //   content: ''
+        //   position: absolute
+        //   left: 0
+        //   right: 0
+        //   bottom: -2px
+        //   margin: auto
+        //   width: 0%
+        //   height: 2px
+        //   background-color: $green
+    input
+      position: relative
+      width: 100%
+      border: none
+      background-color: transparent
+      height: 32px
+      outline: none
+      font-size: 20px
+      color: $darkText
+      &:active,&:focus,&:-internal-autofill-selected
+        background-color: transparent!important
+        color: $darkText
+        color-scheme: dark
+        outline: none
+        & ~ .border::before
+          width: 100%
+
+      &:-webkit-autofill,:-webkit-autofill:hover, :-webkit-autofill:focus, :-webkit-autofill:active
+        color-scheme: dark
+        -webkit-box-shadow: 0 0 0 30px $bodyColor inset !important
+      
+.otp
+  display: flex
+  position: relative
+  &_btn
+    cursor: pointer
+    flex: 0 0 32px
+    height: 33px
+    border-radius: 3px 3px 0px 0px
+    display: flex
+    justify-content: center
+    align-items: center
+    color: $darkText
+    transition: all .3s ease-in-out
+    &:hover
+      background-color: $dark
+      color: $green
+      transition: all .3s ease-in-out
+      .fa-solid
+        animation: rotate .8s infinite ease-in-out
+  &_timer
+    position: absolute
+    right: 40px
+    top: 7px
+    font-weight: bold
+    font-size: 20px
+    color: $darkText
+@keyframes rotate
+  to
+    transform: rotate(0deg)
+  from
+    transform: rotate(-360deg)

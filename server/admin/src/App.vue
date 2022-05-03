@@ -18,9 +18,9 @@ export default {
     return {
     };
   },
-  // updated(){
-  //   this.checkAuth()
-  // },
+  updated(){
+    this.checkAuth()
+  },
   computed: {
     layout() {
       return (this.$route.meta.layout || "empty") + "-layout";

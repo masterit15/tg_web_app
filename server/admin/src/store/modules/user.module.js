@@ -34,6 +34,13 @@ export default {
           console.log(e.response?.data?.message);
       }
     },
+    async sendOTP({}){
+      try {
+        const response = await $api.post('/otp/send')
+      } catch (e) {
+          console.log(e.response?.data?.message);
+      }
+    },
     async logout({commit}){
       try {
         const response = await $api.post('/user/logout')
@@ -49,14 +56,12 @@ export default {
       commit('setLoading', true);
       try {
           const response = await $api.get(`/user/refresh`, {withCredentials: true})
-          console.log(response);
           localStorage.setItem('token', response.data.accessToken);
           commit('setAuth', true);
           commit('setUser', response.data.user);
       } catch (e) {
           console.log(e.response?.data?.message);
       } finally {
-          this.setLoading(false);
           commit('setLoading', false);
       }
   }

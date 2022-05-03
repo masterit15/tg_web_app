@@ -3,7 +3,7 @@
     <h1>WorkersView.vue</h1>
     <button class="user_add">Добавить</button>
     <!-- <UserEditor :workerProp="workers[0]"/> -->
-    <pre>{{ workers }}</pre>
+    
     <ul class="user_list">
       <li class="user_list_item" v-for="item in workers" :key="item.id">
         <h4>{{ item.name }}</h4>

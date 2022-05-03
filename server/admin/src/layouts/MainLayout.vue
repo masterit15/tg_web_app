@@ -2,8 +2,9 @@
   <div id="wrapper">
     <div class="row">
       <app-sidebar />
+      <div style="width: 100%">
+      <app-header />
       <main id="main">
-        <app-header />
           <router-view v-slot="{ Component }">
             <transition name="fade">
               <component :is="Component" />
@@ -11,6 +12,7 @@
           </router-view>
         <app-footer />
       </main>
+      </div>
     </div>
   </div>
 </template>

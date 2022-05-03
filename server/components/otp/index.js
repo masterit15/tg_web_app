@@ -1,12 +1,14 @@
-import { hotp } from 'otplib';
+import { totp } from 'otplib';
 import 'dotenv/config'
-const counter = 10
+totp.resetOptions({
+  step: 30,
+})
 class Otp {
   token(){
-    return hotp.generate(process.env.OTP_SECRET, counter)
+    return totp.generate(process.env.OTP_SECRET)
   }
   isValid(otp){
-    return hotp.check(otp, process.env.OTP_SECRET, counter);
+    return totp.check(otp, process.env.OTP_SECRET);
   }
 }
 export default new Otp()

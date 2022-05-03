@@ -1,0 +1,19 @@
+// FONTS LOAD SECTION
+@mixin font($fname, $fstyle, $fweight, $furl)
+	@font-face
+		font-family: $fname
+		font-style: $fstyle
+		font-weight: $fweight
+		src: url($furl) //format('ttf')
+@include font('Raleway', normal, 300, './assets/fonts/Raleway/Raleway-Regular.ttf')
+@include font('Raleway', normal, 400, './assets/fonts/Raleway/Raleway-Regular.ttf')
+@include font('Raleway', bold, 700, './assets/fonts/Raleway/Raleway-Bold.ttf')
+@include font('Raleway', bold, 900, './assets/fonts/Raleway/Raleway-Black.ttf')
+
+@include font('Comfortaa', normal, 300, './assets/fonts/Comfortaa/Comfortaa-Regular.ttf')
+@include font('Comfortaa', normal, 400, './assets/fonts/Comfortaa/Comfortaa-Medium.ttf')
+@include font('Comfortaa', bold, 700, './assets/fonts/Comfortaa/Comfortaa-Bold.ttf')
+
+
+$Raleway: 'Raleway', sans-serif
+$Comfortaa: 'Comfortaa', sans-serif
