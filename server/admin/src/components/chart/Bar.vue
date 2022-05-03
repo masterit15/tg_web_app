@@ -17,7 +17,13 @@ import {
 Chart.register(BarController, BarElement, PointElement, Title, CategoryScale);
 export default {
   name: "LineChart",
+  data() {
+    return {
+      BarChart: null,
+    }
+  },
   mounted() {
+    if(this.BarChart)this.BarChart.destroy()
     const chart = document.getElementById("line-chart-year").getContext("2d"),
       gradientGreen = chart.createLinearGradient(0, 200, 0, 300);
     gradientGreen.addColorStop(0, "rgba(20, 196, 88, 0.3)");
@@ -132,7 +138,7 @@ export default {
         custom: function (tooltipModel) {},
       },
     };
-    const BarChart = new Chart(chart, {
+    this.BarChart = new Chart(chart, {
       type: "line",
       data: data,
       options: options,
@@ -164,6 +170,9 @@ export default {
         },
       ],
     });
+  },
+  beforeDestroy() {
+    this.BarChart.destroy()
   },
 };
 </script>
