@@ -22,11 +22,11 @@ export default {
   mounted() {
     if(this.LineChart)this.LineChart.destroy()
     const chart = document.getElementById("line-chart").getContext("2d"),
-                  gradientGreen = chart.createLinearGradient(0, 200, 0, 300);
+                  gradientGreen = chart.createLinearGradient(0, 240, 0, 350);
                   gradientGreen.addColorStop(0, "rgba(20, 196, 88, 0.3)");
                   gradientGreen.addColorStop(0.5, "rgba(20, 196, 88, 0.1)");
                   gradientGreen.addColorStop(1, "rgba(20, 196, 88, 0)");
-    const gradientRed = chart.createLinearGradient(0, 200, 0, 300);
+    const gradientRed = chart.createLinearGradient(0, 240, 0, 350);
                   gradientRed.addColorStop(0, "rgba(248, 62, 85, 0.3)");
                   gradientRed.addColorStop(0.5, "rgba(248, 62, 85, 0.1)");
                   gradientRed.addColorStop(1, "rgba(248, 62, 85, 0)");
@@ -56,7 +56,7 @@ export default {
           pointRadius: 5,
           borderWidth: 3,
           borderColor: "rgba(20, 196, 88, 1)",
-          data: [100,110,140,120,130,100,120,160,130,140,134,190],
+          data: [120,110,105,122,130,117,120,133,127,130,122,120],
           min: 0,
           yAxisID: "yAxis",
           xAxisID: "xAxis",
@@ -114,7 +114,7 @@ export default {
       },
       elements: {
         line: {
-          tension: 0.3,
+          tension: 0.5,
         },
         arc: {
           // backgroundColor: "#fff",

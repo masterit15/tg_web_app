@@ -25,11 +25,11 @@ export default {
   mounted() {
     if(this.BarChart)this.BarChart.destroy()
     const chart = document.getElementById("line-chart-year").getContext("2d"),
-      gradientGreen = chart.createLinearGradient(0, 200, 0, 300);
+      gradientGreen = chart.createLinearGradient(0, 240, 0, 350);
     gradientGreen.addColorStop(0, "rgba(20, 196, 88, 0.3)");
     gradientGreen.addColorStop(0.5, "rgba(20, 196, 88, 0.1)");
     gradientGreen.addColorStop(1, "rgba(20, 196, 88, 0)");
-    const gradientRed = chart.createLinearGradient(0, 200, 0, 300);
+    const gradientRed = chart.createLinearGradient(0, 240, 0, 350);
     gradientRed.addColorStop(0, "rgba(248, 62, 85, 0.3)");
     gradientRed.addColorStop(0.5, "rgba(248, 62, 85, 0.1)");
     gradientRed.addColorStop(1, "rgba(248, 62, 85, 0)");

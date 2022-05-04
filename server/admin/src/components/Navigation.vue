@@ -16,6 +16,7 @@ export default {
     return {
       listItems: [
         { title: "Главная", icon: "fa-home", href: "/" },
+        { title: "Каталог", icon: "fa-cubes", href: "/catalog" },
         { title: "Пользователи", icon: "fa-user", href: "/workers" },
       ],
     };

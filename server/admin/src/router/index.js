@@ -21,6 +21,15 @@ const routes = [
     }
   },
   {
+    path: '/catalog',
+    name: 'Каталог',
+    component: () => import('../views/CatalogView.vue'),
+    meta: {
+      layout: 'main',
+      requiresAuth: true
+    }
+  },
+  {
     path: '/auth',
     name: 'Авторизация',
     component: () => import('../views/AuthView.vue'),
