@@ -1,6 +1,6 @@
 <template>
   <div class="view_catalog">
-    <div class="row">
+    <div class="catalog_head">
     <h3 class="page_title">{{pageNow}}</h3>
     <Filter/>
     <button class="btn_view_all">Все<i class="fa fa-chevron-right" aria-hidden="true"></i></button>
