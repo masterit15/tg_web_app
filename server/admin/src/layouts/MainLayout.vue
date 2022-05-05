@@ -2,17 +2,15 @@
   <div id="wrapper">
     <div class="row">
       <app-sidebar />
-      <div style="width: 100%">
+      <div class="content">
       <app-header />
       <main id="main">
-        <div class="row">
           <router-view v-slot="{ Component }">
             <transition name="fade">
               <component :is="Component" />
             </transition>
           </router-view>
           <app-sidebar-right />
-        </div>
       </main>
       <app-footer />
       </div>

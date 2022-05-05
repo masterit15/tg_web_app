@@ -1,5 +1,5 @@
 <template>
-  <div class="view_cart">
+  <div class="page view_cart">
     <h3 class="page_title">{{ pageNow }}</h3>
     <div class="catalog_list">
       <transition-group class="catalog_list_item" name="fade">

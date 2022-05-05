@@ -1,5 +1,5 @@
 <template>
-  <div class="view_catalog">
+  <div class="page view_catalog">
     <div class="catalog_head">
       <div class="catalog_head_start">
         <h3 class="page_title">{{ pageNow }}</h3>

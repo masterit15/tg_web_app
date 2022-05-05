@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="page home">
     <div class="statistic_row">
       <div class="statistic_item">
         <h3 class="statistic_item_title">Всего</h3>

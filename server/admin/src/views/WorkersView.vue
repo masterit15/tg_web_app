@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <div class="page about">
     <h1>WorkersView.vue</h1>
     <button class="user_add">Добавить</button>
     <!-- <UserEditor :workerProp="workers[0]"/> -->

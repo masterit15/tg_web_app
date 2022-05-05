@@ -12,8 +12,9 @@ body
   display: flex
   justify-content: flex-start
   width: 100%
-  & > div
-    width: 100%
+.content
+  flex-basis: 85%
+
 .btn
   &_filter
     cursor: pointer
@@ -86,6 +87,8 @@ body
     & .fa
       color: $darkText
       font-size: 1.5rem
+#wrapper
+  width: 100%
 #app
   position: relative
   width: 100%
@@ -93,6 +96,7 @@ body
 #main
   width: 100%
   height: 100%
+  display: inline-block
   background-color: $contentColor
   border-radius: 50px 0 0 0
   padding: 30px
@@ -127,6 +131,9 @@ body
     font-weight: bold
     color: #fff
 .page
+  width: 100%
+  max-width: 80%
+  float: left
   &_title
     font-weight: bold
     font-size: 25px
@@ -147,18 +154,15 @@ body
 
 .fade-enter-active,
 .fade-leave-active
-  transition: all .3s ease
+  transition: all .5s ease
 .fade-leave-to
   height: 0
+  width: 0
   opacity: 0
 .fade-enter-from,
 .fade-leave-to
   opacity: 0
   transform: scale(0.9)
-.item-enter-active, .item-leave-active
-  transition: opacity 9s
-.item-enter, .item-leave-to
-  opacity: 0
 @import 'auth'
 @import 'filter'
 @import 'catalog'
