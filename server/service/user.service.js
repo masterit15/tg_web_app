@@ -30,11 +30,10 @@ class UserService {
         if (!isPassEquals) {
             throw ApiError.BadRequest('Неверный пароль');
         }
-        const isOtpValid = otp.isValid(otpvalue)
-        console.log(isOtpValid);
-        if (!isOtpValid) {
-            throw ApiError.BadRequest('Неверный или просроченный одноразовый пароль');
-        }
+        // const isOtpValid = otp.isValid(otpvalue)
+        // if (!isOtpValid) {
+        //     throw ApiError.BadRequest('Неверный или просроченный одноразовый пароль');
+        // }
         const tokens = tokenService.generateTokens({...user});
 
         await tokenService.saveToken(user.id, tokens.refreshToken);

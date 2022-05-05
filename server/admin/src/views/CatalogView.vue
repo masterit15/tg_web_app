@@ -17,49 +17,60 @@
       </div>
     </div>
     <div class="catalog_list">
-      <div class="catalog_list_item">
+      <transition-group class="catalog_list_item" name="fade">
+      <div class="catalog_list_item" v-for="item in items" :key="item.id">
         <span class="catalog_list_item_status"><i class="fa fa-fire"></i></span>
-        <img :src="require('../assets/img/salad.png')" alt="" class="catalog_list_item_media" />
+        <img :src="item.img" alt="" class="catalog_list_item_media" />
         <div class="catalog_list_item_content">
-          <h3 class="catalog_list_item_title">Салат с семгой</h3>
-          <p class="catalog_list_item_desc">Далеко-далеко, за словесными горами в стране гласных и согласных живут рыбные тексты. Живет если имени строчка своих.</p>
+          <h3 class="catalog_list_item_title">{{item.title}}</h3>
+          <p class="catalog_list_item_desc">{{item.description}}</p>
           <div class="catalog_list_item_footer">
-            <h2 class="catalog_list_item_price"></h2>
+            <h2 class="catalog_list_item_price"><i class="fa fa-rub"></i> {{item.price}}</h2>
             <div class="catalog_list_item_action">
-              <span class="catalog_list_item_action_delete"></span>
+              <span class="catalog_list_item_action_bay minus" @click="bayCount($event, 'minus', item)">&minus;</span>
               <input
                 type="text"
                 name="count"
-                class="catalog_list_item_action_count"
+                class="catalog_list_item_action_bay_count"
               />
-              <span class="catalog_list_item_action_add"></span>
+              <span class="catalog_list_item_action_bay plus" @click="bayCount($event, 'plus', item)">+</span>
             </div>
           </div>
         </div>
       </div>
+      </transition-group>
     </div>
   </div>
 </template>
 <script>
-import {} from "vuex";
+import {mapGetters} from "vuex";
 import Filter from "@/components/filter/Filter";
+import mixins from '@/mixins/'
 export default {
+  mixins: [mixins],
   name: "Catalog",
   data() {
     return {
       isShow: false,
+      filterParams: {},
     };
   },
   components: {
     Filter,
   },
   computed: {
-    pageNow() {
-      return this.$route.name;
-    },
+    ...mapGetters(['products']),
+    items(){
+      if(this.filterParams.name){
+        return this.products.filter(p=>p.title.toLowerCase().inqludes(this.filterParams.name.toLowerCase()))
+      }else{
+        return this.products
+      }
+    }
   },
   methods: {
     filtered(params) {
+      this.filterParams = params
       console.log("filtered", params);
     },
   },

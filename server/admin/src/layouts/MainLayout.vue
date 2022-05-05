@@ -5,13 +5,16 @@
       <div style="width: 100%">
       <app-header />
       <main id="main">
+        <div class="row">
           <router-view v-slot="{ Component }">
             <transition name="fade">
               <component :is="Component" />
             </transition>
           </router-view>
-        <app-footer />
+          <app-sidebar-right />
+        </div>
       </main>
+      <app-footer />
       </div>
     </div>
   </div>
@@ -19,12 +22,14 @@
 <script>
 import AppHeader from "../components/Header";
 import AppSidebar from "../components/Sidebar";
+import AppSidebarRight from "../components/SidebarRight";
 import AppFooter from "../components/Footer";
 export default {
   components: {
     AppHeader,
     AppSidebar,
-    AppFooter
+    AppFooter,
+    AppSidebarRight
   },
   sockets: {
     connect: function () {

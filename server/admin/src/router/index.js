@@ -30,6 +30,15 @@ const routes = [
     }
   },
   {
+    path: '/cart',
+    name: 'Корзина',
+    component: () => import('../views/CartView.vue'),
+    meta: {
+      layout: 'main',
+      requiresAuth: true
+    }
+  },
+  {
     path: '/auth',
     name: 'Авторизация',
     component: () => import('../views/AuthView.vue'),
