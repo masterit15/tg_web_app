@@ -1,0 +1,53 @@
+.catalog
+  &_list
+    display: flex
+    width: 100%
+    margin: 40px 0
+    justify-content: flex-start
+    flex-wrap: wrap
+    &_item
+      position: relative
+      width: 230px
+      height: 320px
+      display: flex
+      flex-direction: column
+      justify-content: space-between
+      align-items: center
+      &_content
+        display: flex
+        flex-direction: column
+        gap: 10px
+        padding-left: 25px
+        padding-right: 25px
+        margin-top: -30px
+        padding-top: 50px
+        height: 100%
+        width: 100%
+        background-color: $dark
+        border-radius: $borderRadius
+      &_status
+        position: absolute
+        left: 0
+        top: 0
+        background-color: $dark
+        border-radius: 100%
+        display: flex
+        justify-content: center
+        align-items: center
+        width: 40px
+        height: 40px
+        color: $yellow
+        text-shadow: $yellow 0 0 20px
+      &_media
+        width: auto
+        height: 170px
+        z-index: 10
+      &_title
+        font-family: $Comfortaa
+      &_desc
+        font-size: 12px
+      &_price
+      &_action
+        &_add
+        &_count
+        &_delete

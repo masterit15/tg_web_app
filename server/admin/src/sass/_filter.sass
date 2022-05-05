@@ -1,0 +1,58 @@
+#filter
+  background-color: $dark
+  width: 100%
+  max-width: 800px
+  height: 50px
+  padding: 0 10px
+  border-radius: $borderRadius
+  display: flex
+  justify-content: space-between
+  align-items: center
+  .sort
+    position: relative
+    min-width: 200px
+    height: 32px
+    background-color: $contentColor
+    border-radius: $borderRadius
+    padding: 0 20px
+    font-weight: bold
+    display: flex
+    justify-content: flex-start
+    align-items: center
+    &_value
+      width: 100%
+      cursor: pointer
+      display: flex
+      color: $textColor
+      justify-content: space-between
+      align-items: center
+      font-size: 14px
+    &_list
+      position: absolute
+      left: 0
+      top: 100%
+      width: 100%
+      color: $textColor
+      border-radius: $borderRadius
+      list-style: none
+      background-color: $dark
+      &_item
+        padding: 10px 20px
+        cursor: pointer
+        display: flex
+        justify-content: space-between
+        align-items: center
+        &:hover
+          color: $green
+          text-shadow: $green 0px 0px 20px
+  input
+    border-radius: $borderRadius
+    padding: 0 20px
+    height: 32px
+    border: none
+    font-size: 14px
+    font-weight: bold
+    background-color: $contentColor
+    color: $textColor
+    &:focus,&:active      
+      outline: none
