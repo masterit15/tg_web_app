@@ -6,7 +6,7 @@
     </button>
     <router-link class="btn_circle cart" to="/cart"
       ><i class="fa fa-shopping-bag"></i
-      ><span class="count">{{
+      ><span class="count" v-if="cart.length>0">{{
         cart.length > 99 ? 99 : cart.length
       }}</span></router-link
     >

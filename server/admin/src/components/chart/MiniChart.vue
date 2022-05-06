@@ -1,7 +1,5 @@
 <template>
   <div class="chart_line_mini">
-    <!-- <pre>{{chartTitle}}</pre>
-    <h3>{{chartTitle}}</h3> -->
     <canvas :id="`line-chart-${chartId}`"></canvas>
   </div>
 </template>
