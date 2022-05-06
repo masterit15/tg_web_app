@@ -47,7 +47,7 @@ export default {
           pointBorderColor: "#ffffff",
           pointBorderWidth: 4,
           // pointStyle: 'line',
-          pointRadius: 3,
+          pointRadius: 0,
           borderWidth: 4,
           borderColor: this.chartColor,
           data: this.chartData,

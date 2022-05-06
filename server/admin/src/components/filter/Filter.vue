@@ -57,6 +57,7 @@ export default {
   mounted() {
     const that = this;
     new AirDatepicker("#filter_date", {
+      inline: false,
       range: true,
       timepicker: true,
       multipleDatesSeparator: " - ",

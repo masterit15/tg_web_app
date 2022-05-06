@@ -56,3 +56,68 @@
     color: $textColor
     &:focus,&:active      
       outline: none
+
+.air-datepicker
+  background-color: $dark
+  border: 1px solid #535353
+  color: $textColor
+  border-radius: $borderRadius
+  padding: 10px
+  &::before
+    display: none
+    background-color: #333
+
+  &-nav
+    border: none
+  
+  &-body--day-name
+    color: $green
+    &.-weekend-
+      color: $red
+  &-nav--action
+    background-color: $red
+    border-radius: 100%
+    svg
+      fill: $red!important
+  &-cell.-day-.-other-month-, .air-datepicker-cell.-year-.-other-decade-
+    color: #ddd
+.air-datepicker-cell
+  border-radius: 100%
+  &.-range-from-
+    border-radius: 40px 0 0 40px
+    border-color: $green
+  &.-range-to-
+    border-radius: 0 40px 40px 0
+    border-color: $green
+  &.-focus-
+    color: $green
+    background-color: rgba($green,.3)
+  &.-current-
+    color: $green
+    background-color: rgba($green,.3)
+  &.-selected-
+    color: $green
+    background-color: rgba($green,.3)
+    &.-range-from-
+      border-radius: 40px 0 0 40px
+    &.-range-to-
+      border-radius: 0 40px 40px 0
+    &.-focus-
+      background-color: rgba($green,.5)
+  &.-in-range-
+    color: rgba($green,.5)
+    background-color: rgba($green,.1)
+.air-datepicker--pointer:after
+  left: 25px
+  background-color: $dark
+  border-color: #535353
+.air-datepicker-cell.-day-.-other-month-, .air-datepicker .air-datepicker-cell.-year-.-other-decade-
+  color: #808080
+.air-datepicker-time--current-hours, .air-datepicker-time--current-minutes
+  &.-focus-
+    color: rgba($green,.5)
+    background-color: rgba($green,.1)
+.air-datepicker-time--row
+  background: linear-gradient(to right, $green, $green) left 50%/100% var(--adp-time-track-height) no-repeat
+.air-datepicker--buttons, .air-datepicker--time
+  border: none

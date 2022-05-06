@@ -17,7 +17,6 @@
       </div>
     </div>
     <div class="catalog_list">
-      <transition-group class="catalog_list_item" name="fade">
       <div class="catalog_list_item" v-for="item in items" :key="item.id">
         <span class="catalog_list_item_status"><i class="fa fa-fire"></i></span>
         <img :src="item.img" alt="" class="catalog_list_item_media" />
@@ -38,7 +37,6 @@
           </div>
         </div>
       </div>
-      </transition-group>
     </div>
   </div>
 </template>

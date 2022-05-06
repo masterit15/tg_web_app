@@ -2,7 +2,6 @@
   <div class="page view_cart">
     <h3 class="page_title">{{ pageNow }}</h3>
     <div class="catalog_list">
-      <transition-group class="catalog_list_item" name="fade">
       <div class="catalog_list_item" v-for="item in cart" :key="item.id">
         <span class="catalog_list_item_status"><i class="fa fa-fire"></i></span>
         <img :src="item.img" alt="" class="catalog_list_item_media" />
@@ -25,7 +24,6 @@
           </div>
         </div>
       </div>
-      </transition-group>
     </div>
     <div class="send_invoice" v-if="cart.length > 0">
       <button class="send_invoice_btn"  @click="sendInvoiceToBot">Заказать</button>
