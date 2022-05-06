@@ -2,31 +2,53 @@
   <div class="page home">
     <div class="statistic_row">
       <div class="statistic_item">
-        <h3 class="statistic_item_title">Всего</h3>
-        <span class="statistic_item_count"><i class="fa fa-rub"></i>{{numberFormate(3867002)}}</span>
-        <span class="statistic_item_count_percent"></span>
+        <div class="statistic_item_head">
+          <div class="statistic_item_icon" :style="{backgroundImage: `url(${require('@/assets/drink_neon.svg')})`}"></div>
+          <h3 class="statistic_item_title">Напитки</h3>
+          <span class="statistic_item_count_percent">+14%</span>
+        </div>
+        <div class="statistic_item_mid">
+        <span class="statistic_item_count">{{83}} <span>заказов</span></span>
+        <MiniCart 
+        :chart-id="1"
+        chart-color="#74D0F7"
+        :chart-labels="[4,6,5,2,3,7,3,2,5,1]"
+        :chart-data="[4,6,5,2,3,7,3,2,5,1]" 
+        chart-title="доход в день" />
+        </div>
       </div>
       <div class="statistic_item">
-        <h3 class="statistic_item_title">доход в день</h3>
-        <span class="statistic_item_count"><i class="fa fa-rub"></i>{{numberFormate(30347)}}</span>
-        <span class="statistic_item_count_percent"></span>
+        <div class="statistic_item_head">
+          <div class="statistic_item_icon" :style="{backgroundImage: `url(${require('@/assets/burger_neon.svg')})`}"></div>
+          <h3 class="statistic_item_title">Еда</h3>
+          <span class="statistic_item_count_percent">+21%</span>
+        </div>
+        <div class="statistic_item_mid">
+        <span class="statistic_item_count">{{210}} <span>заказов</span></span>
+        <MiniCart 
+        :chart-id="2"
+        chart-color="#F83E55"
+        :chart-labels="[1,3,4,2,5,7,3,4,9,3]"
+        :chart-data="[1,3,4,2,5,7,3,4,9,3]" 
+        chart-title="доход в день" />
+        </div>
       </div>
       <div class="statistic_item">
-        <h3 class="statistic_item_title">заказы в день</h3>
-        <span class="statistic_item_count"><i class="fa fa-rub"></i>{{numberFormate(347)}}</span>
-        <span class="statistic_item_count_percent"></span>
+        <div class="statistic_item_head">
+          <div class="statistic_item_icon" :style="{backgroundImage: `url(${require('@/assets/burger_drink_neon_2.svg')})`}"></div>
+          <h3 class="statistic_item_title">Сеты</h3>
+          <span class="statistic_item_count_percent">+32%</span>
+        </div>
+        <div class="statistic_item_mid">
+        <span class="statistic_item_count">{{7}} <span>заказов</span></span>
+        <MiniCart 
+        :chart-id="3"
+        chart-color="#14C458"
+        :chart-labels="[1,3,2,3,5,7,1,2,3,5]"
+        :chart-data="[1,3,2,3,5,7,1,2,3,5]" 
+        chart-title="доход в день" />
+        </div>
       </div>
-      <div class="statistic_item">
-        <h3 class="statistic_item_title">месячнй доход</h3>
-        <span class="statistic_item_count"><i class="fa fa-rub"></i>{{numberFormate(389347)}}</span>
-        <span class="statistic_item_count_percent"></span>
-      </div>
-      <div class="statistic_item">
-        <h3 class="statistic_item_title">месячные продажи</h3>
-        <span class="statistic_item_count"><i class="fa fa-rub"></i>{{numberFormate(347)}}</span>
-        <span class="statistic_item_count_percent"></span>
-      </div>
-      
     </div>
     <div class="chart_row">
       <BarChart/>
@@ -41,6 +63,7 @@
 import {mapActions} from 'vuex'
 import BarChart from '@/components/chart/Bar'
 import LineChart from '@/components/chart/Line'
+import MiniCart from '@/components/chart/MiniChart'
 import mixins from '@/mixins'
 export default {
   mixins: [mixins],
@@ -50,7 +73,8 @@ export default {
   },
   components:{
     BarChart,
-    LineChart
+    LineChart,
+    MiniCart
   }
 }
 </script>
