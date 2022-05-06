@@ -1,7 +1,7 @@
 <template>
   <div class="chart_line">
     <h3>График продаж</h3>
-    <canvas id="line-chart"></canvas>
+    <canvas :id="`line-chart-${chartId}`"></canvas>
   </div>
 </template>
 
@@ -14,6 +14,9 @@ import {
 Chart.register(...registerables);
 export default {
   name: "LineChart",
+  props: {
+    chartId: Number,
+  }
   data() {
     return {
       LineChart: null
@@ -21,15 +24,12 @@ export default {
   },
   mounted() {
     if(this.LineChart)this.LineChart.destroy()
-    const chart = document.getElementById("line-chart").getContext("2d"),
+    const chart = document.getElementById(`line-chart-${this.chartId}`).getContext("2d"),
                   gradientGreen = chart.createLinearGradient(0, 240, 0, 350);
                   gradientGreen.addColorStop(0, "rgba(20, 196, 88, 0.3)");
                   gradientGreen.addColorStop(0.5, "rgba(20, 196, 88, 0.1)");
                   gradientGreen.addColorStop(1, "rgba(20, 196, 88, 0)");
-    const gradientRed = chart.createLinearGradient(0, 240, 0, 350);
-                  gradientRed.addColorStop(0, "rgba(248, 62, 85, 0.3)");
-                  gradientRed.addColorStop(0.5, "rgba(248, 62, 85, 0.1)");
-                  gradientRed.addColorStop(1, "rgba(248, 62, 85, 0)");
+
     const data = {
        labels: [
           "Янв",
@@ -60,22 +60,7 @@ export default {
           min: 0,
           yAxisID: "yAxis",
           xAxisID: "xAxis",
-        },
-        {
-          label: "Прошлый год",
-          fill: true,
-          backgroundColor: gradientRed,
-          pointBackgroundColor: "rgba(248, 62, 85, 1)",
-          pointBorderColor: "#ffffff",
-          pointBorderWidth: 3,
-          pointRadius: 5,
-          borderWidth: 3,
-          borderColor: "rgba(248, 62, 85, 1)",
-          data: [150,104,110,120,130,120,120,110,130,140,150,110],
-          min: 0,
-          yAxisID: "yAxis",
-          xAxisID: "xAxis",
-        },
+        }
       ],
     };
     const options = {
@@ -86,16 +71,13 @@ export default {
         easing: "easeInOutQuad",
         duration: 800,
       },
-      chartArea: {
-        backgroundColor: 'rgba(251, 85, 85, 0.4)'
-    },
       scales: {
         yAxis: {
           ticks: {
             // stepSize: 50
           },
           grid: {
-            color: "#48474F",
+            // color: "rgba(20, 196, 88, 0)",
             // borderColor: '#48474F',
             drawTicks: false,
             borderDash: [5, 5],
