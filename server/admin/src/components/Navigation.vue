@@ -18,6 +18,7 @@ export default {
         { title: "Главная", icon: "fa-home", href: "/" },
         { title: "Каталог", icon: "fa-cubes", href: "/catalog" },
         { title: "Пользователи", icon: "fa-user", href: "/workers" },
+        { title: "Карта", icon: "fa-map-marker", href: "/map" },
       ],
     };
   },

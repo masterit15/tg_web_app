@@ -30,6 +30,15 @@ const routes = [
     }
   },
   {
+    path: '/map',
+    name: 'Карта',
+    component: () => import('../views/MapView.vue'),
+    meta: {
+      layout: 'main',
+      requiresAuth: true
+    }
+  },
+  {
     path: '/cart',
     name: 'Корзина',
     component: () => import('../views/CartView.vue'),
@@ -54,21 +63,21 @@ const router = createRouter({
   routes
 })
 router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.requiresAuth)){
-    if (!localStorage.getItem('token')){
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (!localStorage.getItem('token')) {
       // делаем редирект на страницу авторизации
       next('/auth')
-    }else{
+    } else {
       next()
     }
-  } else if (to.matched.some(record => record.meta.requiresGuest)){
+  } else if (to.matched.some(record => record.meta.requiresGuest)) {
     if (localStorage.getItem('token')) {
       // делаем редирект на главную страницу
       next('/')
     } else {
       next()
     }
-  }else{
+  } else {
     next()
   }
 })

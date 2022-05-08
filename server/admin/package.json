@@ -17,6 +17,7 @@
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
     "vue-socket.io": "^3.0.10",
+    "vue-yandex-maps": "^0.12.3",
     "vuex": "^4.0.0"
   },
   "devDependencies": {
