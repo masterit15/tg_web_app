@@ -26,6 +26,18 @@ export default {
   },
   async mounted() {
     await loadYmap({...settings, debug: true})
+    var multiRoute = new ymaps.multiRouter.MultiRoute({   
+    // Точки маршрута. Точки могут быть заданы как координатами, так и адресом. 
+    referencePoints: [
+        'Владикавказ, ул Галковского 233',
+        'Владикавказ, ул Ватутина 2',
+        ]
+    }, {
+          // Автоматически устанавливать границы карты так,
+          // чтобы маршрут был виден целиком.
+          boundsAutoApply: true
+    });
+   ymaps.geoObjects.add(multiRoute);
   },
   components: { yandexMap, ymapMarker },
 };
