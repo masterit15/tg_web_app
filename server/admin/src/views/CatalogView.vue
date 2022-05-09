@@ -1,5 +1,14 @@
 <template>
   <div class="page view_catalog">
+    <ScrollList :items="category" :call-back-events="filterItems()"/>
+    <!-- <ul class="catalog_cat_list">
+      <li class="catalog_cat_list_item" v-for="item in category" :key="item.id">
+        <div class="catalog_cat_list_item_wrap"  @click="filterItems($event, item.id)">
+        <img :src="item.media" alt="" class="catalog_cat_list_item_media">
+        <h4 class="catalog_cat_list_item_title">{{item.title}}</h4>
+        </div>
+      </li>
+    </ul> -->
     <div class="catalog_head">
       <div class="catalog_head_start">
         <h3 class="page_title">{{ pageNow }}</h3>
@@ -16,15 +25,8 @@
         </button>
       </div>
     </div>
-    <ul class="catalog_cat_list">
-      <li class="catalog_cat_list_item" v-for="item in category" :key="item.id">
-        <div class="catalog_cat_list_item_wrap"  @click="filterItems($event, item.id)">
-        <img :src="item.media" alt="" class="catalog_cat_list_item_media">
-        <h4 class="catalog_cat_list_item_title">{{item.title}}</h4>
-        </div>
-      </li>
-    </ul>
-    <div class="catalog_list">
+    
+    <div class="catalog_list csll">
       <div class="catalog_list_item" v-for="item in items" :key="item.id">
         <span class="catalog_list_item_status"><i class="fa fa-fire"></i></span>
         <img :src="item.img" alt="" class="catalog_list_item_media" />
@@ -51,6 +53,7 @@
 <script>
 import {mapGetters} from "vuex";
 import Filter from "@/components/filter/Filter";
+import ScrollList from "@/components/ScrollList";
 import mixins from '@/mixins/'
 export default {
   mixins: [mixins],
@@ -72,8 +75,38 @@ export default {
       ]
     };
   },
+  mounted() {
+//     const slider = document.querySelector('.catalog_cat_list');
+// let isDown = false;
+// let startX;
+// let scrollLeft;
+
+// slider.addEventListener('mousedown', (e) => {
+//   isDown = true;
+//   slider.classList.add('active');
+//   startX = e.pageX - slider.offsetLeft;
+//   scrollLeft = slider.scrollLeft;
+// });
+// slider.addEventListener('mouseleave', () => {
+//   isDown = false;
+//   slider.classList.remove('active');
+// });
+// slider.addEventListener('mouseup', () => {
+//   isDown = false;
+//   slider.classList.remove('active');
+// });
+// slider.addEventListener('mousemove', (e) => {
+//   if(!isDown) return;
+//   e.preventDefault();
+//   const x = e.pageX - slider.offsetLeft;
+//   const walk = (x - startX) * 3; //scroll-fast
+//   slider.scrollLeft = scrollLeft - walk;
+//   console.log(walk);
+// });
+  },
   components: {
     Filter,
+    ScrollList
   },
   computed: {
     ...mapGetters(['products']),
@@ -94,17 +127,8 @@ export default {
       this.filterParams = params
       console.log("filtered", params);
     },
-    filterItems(event, id){
-        let parent = event.target.closest('.catalog_cat_list_item')
-        if(!parent.classList.contains('active')){
-          let mm = document.querySelectorAll('.catalog_cat_list_item')
-          mm.forEach(m=>m.classList.remove('active'))
-          parent.classList.add('active')
+    filterItems(id){
           this.filterParams.cat = id
-        }else{
-          parent.classList.remove('active')
-          this.filterParams.cat = null
-        }
     }
   },
 };

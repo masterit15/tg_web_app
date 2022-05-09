@@ -1,43 +1,51 @@
 <template>
-    <yandex-map 
+  <yandex-map
     :settings="settings"
-    :coords="centerCoords"  
-    :zoom="12"  
-    :controls="['zoomControl']"
-            >
+    :coords="centerCoords"
+    :zoom="10"
+    @map-was-initialized="mapCreated"
+    :controls="[]"
+  >
     <!--Markers-->
-</yandex-map>
+  </yandex-map>
 </template>
 <script>
-import { yandexMap, ymapMarker, loadYmap } from 'vue-yandex-maps'
+import { yandexMap, ymapMarker, loadYmap } from "vue-yandex-maps";
 const settings = {
-        apiKey: "77b16aec-e9a9-4530-952b-64b60ec60cb2",
-        lang: "ru_RU",
-        coordorder: "latlong",
-        enterprise: false,
-        version: "2.1",
-      }
+  apiKey: "77b16aec-e9a9-4530-952b-64b60ec60cb2",
+  lang: "ru_RU",
+  coordorder: "latlong",
+  enterprise: false,
+  version: "2.1",
+};
 export default {
   data() {
     return {
       settings: settings,
-      centerCoords: [43.024616, 44.681771]
+      centerCoords: [43.024616, 44.681771],
     };
   },
   async mounted() {
-    await loadYmap({...settings, debug: true})
-    var multiRoute = new ymaps.multiRouter.MultiRoute({   
-    // Точки маршрута. Точки могут быть заданы как координатами, так и адресом. 
-    referencePoints: [
-        'Владикавказ, ул Галковского 233',
-        'Владикавказ, ул Ватутина 2',
-        ]
-    }, {
+    await loadYmap({ ...settings, debug: true });
+  },
+  methods: {
+    mapCreated($map) {
+      var multiRoute = new ymaps.multiRouter.MultiRoute(
+        {
+          // Точки маршрута. Точки могут быть заданы как координатами, так и адресом.
+          referencePoints: [
+            "Владикавказ, ул Галковского 233",
+            "Владикавказ, ул Ватутина 2",
+          ],
+        },
+        {
           // Автоматически устанавливать границы карты так,
           // чтобы маршрут был виден целиком.
-          boundsAutoApply: true
-    });
-   ymaps.geoObjects.add(multiRoute);
+          boundsAutoApply: true,
+        }
+      );
+      // $map.geoObjects.add(multiRoute);
+    },
   },
   components: { yandexMap, ymapMarker },
 };
@@ -46,4 +54,7 @@ export default {
 .ymap-container
   width: 100%
   height: 100%
+  max-height: 900px
+.ymaps-2-1-79-ground-pane
+  filter: invert(100%) grayscale(80%) brightness(80%)
 </style>

@@ -11,8 +11,13 @@
       white-space: nowrap
       gap: 30px
       margin: 30px 0
+      transition: all .3s ease
       &::-webkit-scrollbar
         display: none
+      &.active
+        .catalog_cat_list_item
+          cursor: grabbing
+          transition: all .3s ease
       &_item
         display: flex
         position: relative
@@ -27,6 +32,7 @@
         overflow: hidden
         border-radius: 50px
         background-color: $dark
+        transition: all .3s ease
         &::before
           content: ''
           position: absolute
@@ -70,10 +76,14 @@
   &_list
     display: flex
     width: 100%
+    height: 600px
     margin: 40px 0
     justify-content: space-around
+    overflow-y: auto
+
     gap: 30px
     flex-wrap: wrap
+    
     &_item
       flex-basis: 30%
       position: relative
