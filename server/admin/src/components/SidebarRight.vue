@@ -26,9 +26,14 @@
 </template>
 <script>
 import {mapGetters, mapActions} from 'vuex'
+import mixins from '@/mixins'
 export default {
+  mixins: [mixins],
   computed: {
-    ...mapGetters(['user'])
+    ...mapGetters(['products']),
+    items(){
+        return this.products
+    }
   },
 }
 </script>
