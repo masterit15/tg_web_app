@@ -30,6 +30,15 @@ const routes = [
     }
   },
   {
+    path: '/detail/:id',
+    name: 'Продукт детально',
+    component: () => import('../views/DetailView.vue'),
+    meta: {
+      layout: 'main',
+      requiresAuth: true
+    }
+  },
+  {
     path: '/map',
     name: 'Карта',
     component: () => import('../views/MapView.vue'),

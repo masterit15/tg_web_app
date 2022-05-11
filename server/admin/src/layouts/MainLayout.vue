@@ -10,7 +10,7 @@
               <component :is="Component" />
             </transition>
           </router-view>
-          <app-sidebar-right />
+          <app-sidebar-right v-if="!$route.path.includes('detail')" />
       </main>
       <app-footer />
       </div>
@@ -34,5 +34,10 @@ export default {
       console.log('socket connected')
     },
   },
+  computed: {
+    pageNow(){
+      return this.$route
+    }
+  }
 };
 </script>

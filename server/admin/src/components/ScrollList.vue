@@ -1,15 +1,15 @@
 <template>
   <ul
-    class="catalog_cat_list scrolllist"
-
+    class="scrolllist"
+    :class="listClass"
   >
-    <li class="catalog_cat_list_item" v-for="item in items" :key="item.id">
+    <li class="item" v-for="item in items" :key="item.id">
       <div
-        class="catalog_cat_list_item_wrap"
+        class="item_wrap"
         @click="filterItems($event, item.id)"
       >
-        <img :src="item.media" alt="" class="catalog_cat_list_item_media" />
-        <h4 class="catalog_cat_list_item_title">{{ item.title }}</h4>
+        <img :src="item.media" alt="" class="item_media" />
+        <h4 class="item_title" v-if="!hideTitle">{{ item.title }}</h4>
       </div>
     </li>
   </ul>
@@ -19,6 +19,8 @@
 export default {
   props: {
     items: Array,
+    listClass: String,
+    hideTitle: Boolean
   },
   data() {
     return {
@@ -29,6 +31,7 @@ export default {
   },
   mounted() {
     const slider = document.querySelector(".scrolllist");
+    if(slider){
     let isDown = false;
     let startX;
     let scrollLeft;
@@ -55,13 +58,15 @@ export default {
       slider.scrollLeft = scrollLeft - walk;
       // console.log(walk);
     });
+    }
   },
   methods: {
     filterItems(event, id) {
       this.$emit("callBackEvents", id);
-      let parent = event.target.closest(".catalog_cat_list_item");
+      let parent = event.target.closest(`.${this.listClass} .item`);
+      console.log(this.listClass);
       if (!parent.classList.contains("active")) {
-        let mm = document.querySelectorAll(".catalog_cat_list_item");
+        let mm = document.querySelectorAll(`.${this.listClass} .item`);
         mm.forEach((m) => m.classList.remove("active"));
         parent.classList.add("active");
         this.$emit("callBackEvents", id);
@@ -99,8 +104,14 @@ export default {
 .scrolllist
   cursor: pointer
   transition: all .3s ease
+  overflow-x: auto
+  overflow-y: hidden
+  list-style: none
+  white-space: nowrap
+  &::-webkit-scrollbar
+    display: none
   &.active
     cursor: grabbing
-    transform: scale(1.1)
+    transform: scale(1.01)
     transition: all .3s ease
 </style>

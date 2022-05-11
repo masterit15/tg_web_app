@@ -1,14 +1,6 @@
 <template>
   <div class="page view_catalog">
-    <ScrollList :items="category" :call-back-events="filterItems()"/>
-    <!-- <ul class="catalog_cat_list">
-      <li class="catalog_cat_list_item" v-for="item in category" :key="item.id">
-        <div class="catalog_cat_list_item_wrap"  @click="filterItems($event, item.id)">
-        <img :src="item.media" alt="" class="catalog_cat_list_item_media">
-        <h4 class="catalog_cat_list_item_title">{{item.title}}</h4>
-        </div>
-      </li>
-    </ul> -->
+    <ScrollList list-class="catalog_cat_list" :items="category" :call-back-events="filterItems()"/>
     <div class="catalog_head">
       <div class="catalog_head_start">
         <h3 class="page_title">{{ pageNow }}</h3>
@@ -29,9 +21,13 @@
     <div class="catalog_list csll">
       <div class="catalog_list_item" v-for="item in items" :key="item.id">
         <span class="catalog_list_item_status"><i class="fa fa-fire"></i></span>
-        <img :src="item.img" alt="" class="catalog_list_item_media" />
+         <router-link :to="{ path: `/detail/${item.id}`}" class="catalog_list_item_media">
+          <img :src="item.img" alt="" class="catalog_list_item_media" />
+        </router-link>
         <div class="catalog_list_item_content">
-          <h3 class="catalog_list_item_title">{{item.title}}</h3>
+          <router-link :to="{ path: `/detail/${item.id}`}" >
+            <h3 class="catalog_list_item_title">{{item.title}}</h3>
+          </router-link>
           <p class="catalog_list_item_desc">{{item.description}}</p>
           <div class="catalog_list_item_footer">
             <h2 class="catalog_list_item_price"><i class="fa fa-rub"></i> {{item.price}}</h2>
