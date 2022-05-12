@@ -1,0 +1,38 @@
+.slider
+  position: relative
+  width: 100%
+  margin-top: 50px
+  &_wrap
+    width: 600px
+    display: flex
+    justify-content: flex-start
+    align-items: center
+    gap: 20px
+    overflow: hidden
+  &_item
+    width: 150px
+    padding: 15px
+    border-radius: $borderRadius
+    opacity: 0.5
+    &.active
+      opacity: 1
+      border: 1px solid $red
+  &_nav
+    position: absolute
+    right: 0
+    top: 0
+
+    width: 130px
+    display: flex
+    justify-content: space-between
+  &_prev,&_next
+    cursor: pointer
+    width: 40px
+    height: 40px
+    display: flex
+    justify-content: center
+    align-items: center
+    background-color: rgba($red,.5)
+    border: 1px solid $red
+    border-radius: 100%
+      
