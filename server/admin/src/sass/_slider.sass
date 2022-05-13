@@ -1,30 +1,37 @@
 .slider
   position: relative
   width: 100%
-  margin-top: 50px
+  margin: 0 70px
   &_wrap
-    width: 600px
+    max-width: 800px
     display: flex
     justify-content: flex-start
     align-items: center
     gap: 20px
-    overflow: hidden
+    // overflow: hidden
+    overflow-x: auto
+    overflow-y: hidden
+    &::-webkit-scrollbar
+      display: none
   &_item
     width: 150px
     padding: 15px
     border-radius: $borderRadius
-    opacity: 0.5
+    opacity: 0.3
+    border: 1px solid transparent
+    transition: all .3s ease
     &.active
       opacity: 1
-      border: 1px solid $red
+      border: 1px solid rgba($red,0.5)
+      transition: all .3s ease
   &_nav
     position: absolute
-    right: 0
-    top: 0
-
+    right: -65px
+    top: 50px
     width: 130px
     display: flex
     justify-content: space-between
+    z-index: 10
   &_prev,&_next
     cursor: pointer
     width: 40px

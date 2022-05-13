@@ -19,7 +19,9 @@ export default {
     };
   },
   updated(){
-    this.checkAuth()
+    if(!this.checkAuth()){
+      this.$route.puch('/auth')
+    }
   },
   computed: {
     layout() {

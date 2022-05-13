@@ -1,0 +1,91 @@
+<template>
+  <div class="slider">
+    <div class="slider_wrap">
+      <img
+        class="slider_item"
+        :class="item.id == activeId ? 'active' : ''"
+        :src="item.img"
+        alt=""
+        v-for="item in items"
+        :key="item.id"
+        :data-id="item.id"
+      />
+    </div>
+    <div class="slider_nav">
+      <span class="slider_prev" @click="prev($event)"
+        ><i class="fa fa-chevron-left"></i
+      ></span>
+      <span class="slider_next" @click="next($event)"
+        ><i class="fa fa-chevron-right"></i
+      ></span>
+    </div>
+  </div>
+</template>
+<script>
+import { mapGetters } from 'vuex'
+export default {
+  props: {
+    activeId: Number
+  },
+  mounted() {
+    this.$emit('callBackEvent', this.activeId)
+  },
+  computed: {
+    ...mapGetters(["products"]),
+    product() {
+      if (this.$route.params.id) {
+        return [...this.products].filter(
+          (p) => p.id == this.$route.params.id
+        )[0];
+      } else {
+        return "this.products";
+      }
+    },
+    items() {
+      return [...this.products].filter((p) => p.cat == this.product.cat);
+    },
+  },
+  methods: {
+    prev(e) {
+      let slider = document.querySelector(".slider");
+      let slide = document.querySelector(".slider_item.active");
+
+      let prev = slide.previousSibling;
+      let next = prev.nextSibling;
+
+      if (prev?.length == 0) {
+        let slides = [...document.querySelectorAll(".slider_item")];
+        slide.classList.remove("active");
+        slides.pop().classList.add("active");
+        slides.pop().scrollIntoView({ inline: "center", behavior: "smooth" });
+        return false;
+      }
+
+      if (prev) prev.classList.add("active");
+      if (next) next.classList.remove("active");
+
+      slide.scrollIntoView({ inline: "center", behavior: "smooth" });
+      this.$emit('callBackEvent', slide.dataset.id)
+    },
+    next() {
+      let slide = document.querySelector(".slider_item.active");
+
+      let next = slide.nextSibling;
+      let prev = next.previousSibling;
+
+      if (next?.length == 0) {
+        let slides = [...document.querySelectorAll(".slider_item")];
+        slide.classList.remove("active");
+        slides.shift().classList.add("active");
+        slides.shift().scrollIntoView({ inline: "center", behavior: "smooth" });
+        return false;
+      }
+
+      if (next) next.classList.add("active");
+      if (prev) prev.classList.remove("active");
+      slide.scrollIntoView({ inline: "center", behavior: "smooth" });
+      this.$emit('callBackEvent', slide.dataset.id)
+    },
+  },
+};
+</script>
