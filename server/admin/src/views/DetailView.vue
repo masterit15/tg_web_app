@@ -9,7 +9,7 @@
           </div>
           <p class="catalog_detail_item_desc">{{product.description}}</p>
           <div class="catalog_detail_item_ingredient_wrap">
-          <span>Ингредиенты:</span><ScrollList list-class="catalog_detail_item_ingredient" :items="product.ingredient" :hide-title="true"/>
+          <span>Ингредиенты:</span><ScrollList list-class="catalog_detail_item_ingredient" :items="ingredientArr" :hide-title="false"/>
           </div>
           <h3 class="catalog_detail_item_price"><i class="fa fa-rub"></i>{{product.price}}</h3>
           <button class="catalog_detail_item_addcart">Добавить в корзину</button>
@@ -17,9 +17,10 @@
       <scroll-slider :active-id="Number($route.params.id)" v-on:call-back-event="getProductDetail"/>
       </div>
       <div class="catalog_detail_item_media" :style="{backgroundImage: `url(${require('../assets/pattern.jpg')})`}">
-        <img :src="product.img" alt="">
+      <transition name="fade">
+        <img :src="product.img" :alt="product.title" :key="product.id">
+      </transition>
       </div>
-      
     </div>
   </div>
 </template>
@@ -36,16 +37,18 @@ export default {
       isDown: false,
       startX: null,
       scrollLeft: null,
+      productId: this.$route.params.id
     }
   },
   computed:{
-    ...mapGetters(['products']),
+    ...mapGetters(['products','ingredient']),
     product(){
-      if(this.$route.params.id){
-        return [...this.products].filter(p=>p.id == this.$route.params.id)[0]
-      }else{
-        return 'this.products'
-      }
+        return [...this.products].filter(p=>p.id == this.productId)[0]
+    },
+    ingredientArr(){
+      let ingredients = [...this.ingredient]
+      let ingredientsProduct = [...this.product.ingredient]
+      return ingredients.filter(i => ingredientsProduct.includes(i.id))
     }
   },
   components: {
@@ -56,7 +59,7 @@ export default {
   },
   methods: {
     getProductDetail(id){
-      console.log(id);
+      this.productId = Number(id)
     }
   },
 }

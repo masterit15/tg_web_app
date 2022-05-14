@@ -47,45 +47,43 @@ export default {
   },
   methods: {
     prev(e) {
-      let slider = document.querySelector(".slider");
       let slide = document.querySelector(".slider_item.active");
-
       let prev = slide.previousSibling;
       let next = prev.nextSibling;
-
       if (prev?.length == 0) {
         let slides = [...document.querySelectorAll(".slider_item")];
         slide.classList.remove("active");
         slides.pop().classList.add("active");
         slides.pop().scrollIntoView({ inline: "center", behavior: "smooth" });
+        this.selectActive()
         return false;
       }
-
       if (prev) prev.classList.add("active");
       if (next) next.classList.remove("active");
-
       slide.scrollIntoView({ inline: "center", behavior: "smooth" });
-      this.$emit('callBackEvent', slide.dataset.id)
+      this.selectActive()
     },
     next() {
       let slide = document.querySelector(".slider_item.active");
-
       let next = slide.nextSibling;
       let prev = next.previousSibling;
-
       if (next?.length == 0) {
         let slides = [...document.querySelectorAll(".slider_item")];
         slide.classList.remove("active");
         slides.shift().classList.add("active");
         slides.shift().scrollIntoView({ inline: "center", behavior: "smooth" });
+        this.selectActive()
         return false;
       }
-
       if (next) next.classList.add("active");
       if (prev) prev.classList.remove("active");
       slide.scrollIntoView({ inline: "center", behavior: "smooth" });
-      this.$emit('callBackEvent', slide.dataset.id)
+      this.selectActive()
     },
+    selectActive(){
+      let activeNow = document.querySelector(".slider_item.active");
+      this.$emit('callBackEvent', activeNow.dataset.id)
+    }
   },
 };
 </script>
