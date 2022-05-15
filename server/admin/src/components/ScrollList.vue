@@ -1,8 +1,5 @@
 <template>
-  <ul
-    class="scrolllist"
-    :class="listClass"
-  >
+  <transition-group name="fade" tag="ul" class="scrolllist" :class="listClass">
     <li class="item" v-for="item in items" :key="item.id">
       <div
         class="item_wrap"
@@ -12,7 +9,7 @@
         <h4 class="item_title" v-if="!hideTitle">{{ item.title }}</h4>
       </div>
     </li>
-  </ul>
+  </transition-group>
 </template>
 
 <script>

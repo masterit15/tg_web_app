@@ -9,7 +9,9 @@
         </button>
       </div>
       <div class="catalog_head_mid">
-        <Filter v-show="isShow" v-on:back-params="filtered" />
+        <transition name="fade">
+          <Filter v-show="isShow" v-on:back-params="filtered" />
+        </transition>
       </div>
       <div class="catalog_head_start">
         <button class="btn_view_all">

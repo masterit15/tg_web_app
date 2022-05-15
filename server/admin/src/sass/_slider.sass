@@ -1,0 +1,45 @@
+.slider
+  position: relative
+  width: 100%
+  margin: 0 70px
+  &_wrap
+    max-width: 800px
+    display: flex
+    justify-content: flex-start
+    align-items: center
+    gap: 20px
+    // overflow: hidden
+    overflow-x: auto
+    overflow-y: hidden
+    &::-webkit-scrollbar
+      display: none
+  &_item
+    width: 150px
+    padding: 15px
+    border-radius: $borderRadius
+    opacity: 0.3
+    border: 1px solid transparent
+    transition: all .3s ease
+    &.active
+      opacity: 1
+      border: 1px solid rgba($red,0.5)
+      transition: all .3s ease
+  &_nav
+    position: absolute
+    right: -65px
+    top: 50px
+    width: 130px
+    display: flex
+    justify-content: space-between
+    z-index: 10
+  &_prev,&_next
+    cursor: pointer
+    width: 40px
+    height: 40px
+    display: flex
+    justify-content: center
+    align-items: center
+    background-color: rgba($red,.5)
+    border: 1px solid $red
+    border-radius: 100%
+      

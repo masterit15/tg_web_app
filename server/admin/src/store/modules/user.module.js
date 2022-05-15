@@ -59,8 +59,10 @@ export default {
           localStorage.setItem('token', response.data.accessToken);
           commit('setAuth', true);
           commit('setUser', response.data.user);
+          return true
       } catch (e) {
           console.log(e.response?.data?.message);
+          return false
       } finally {
           commit('setLoading', false);
       }

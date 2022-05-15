@@ -18,6 +18,11 @@
         font-size: 3.2rem
       &_desc
         color: $textColor
+      &_media
+        display: flex
+        justify-content: center
+        align-items: center
+
       &_ingredient
         display: flex
         justify-content: flex-start
@@ -26,35 +31,37 @@
         overflow-x: auto
         overflow-y: hidden
         gap: 15px
-        margin: 20px 0
         &_wrap
           display: flex
           justify-content: flex-start
           align-items: center
           gap: 15px
+          min-height: 100px
           font-weight: bold
           color: $textColor
         & .item
-          width: 50px
-          height: 50px
+          width: 65px
+          height: 65px
           display: flex
           justify-content: center
           align-items: center
-          // filter: grayscale(100%)
+          text-align: center
           transition: all .3s ease
-          &:hover, &.active
-            filter: grayscale(0%)
+          &.active
+            filter: grayscale(100%)
             transition: all .3s ease
           &_media
-            width: 40px
-            height: auto
+            width: auto
+            height: 40px
       &_price
         font-family: $Comfortaa
         font-size: 35px
         font-weight: bold
       &_addcart
+        cursor: pointer
         background-color: $green
         border-radius: $borderRadius
+        border: none
         color: #fff
         font-weight: bold
         padding: 15px 30px
@@ -62,11 +69,18 @@
       &_media
         position: relative
         width: 100%
+        max-width: 450px
         background-size: 100%
         img
           position: relative
           transform: translateX(-150px)
           z-index: 10
+        .next_img
+          position: absolute
+          right: 0
+          filter: blur(3px)
+          transform: scale(0.6) translateX(150px)
+          z-index: 1
         &::before
           content: ''
           position: absolute
