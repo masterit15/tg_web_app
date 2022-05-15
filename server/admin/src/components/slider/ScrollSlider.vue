@@ -9,6 +9,8 @@
         v-for="item in items"
         :key="item.id"
         :data-id="item.id"
+        @click="activeItem($event, 
+        item.id)"
       />
     </div>
     <div class="slider_nav">
@@ -49,6 +51,12 @@ export default {
     },
   },
   methods: {
+    activeItem(e, id){
+      let slides = [...document.querySelectorAll(".slider_item")];
+      slides.forEach(s=>s.classList.remove('active'))
+      e.target.classList.add('active')
+      this.selectActive()
+    },
     prev(e) {
       let slide = document.querySelector(".slider_item.active");
       let prev = slide.previousSibling;
@@ -90,6 +98,7 @@ export default {
       
       if (next?.length == 0) {
         let slides = [...document.querySelectorAll(".slider_item")];
+        console.log(slides.shift().dataset.id);
         this.$emit('nextItem', slides.shift().dataset.id)
       }else{
         this.$emit('nextItem', next.dataset.id)

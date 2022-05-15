@@ -3,8 +3,12 @@
     &_item
       display: flex
       justify-content: flex-start
+      width: 100%
       gap: 70px
+      .left
+        width: 100%
       &_content
+        width: 100%
         padding: 70px
       &_rating
         display: flex
@@ -18,11 +22,7 @@
         font-size: 3.2rem
       &_desc
         color: $textColor
-      &_media
-        display: flex
-        justify-content: center
-        align-items: center
-
+        max-width: 800px
       &_ingredient
         display: flex
         justify-content: flex-start
@@ -69,11 +69,12 @@
       &_media
         position: relative
         width: 100%
-        max-width: 450px
+        max-width: 500px
         background-size: 100%
         img
           position: relative
-          transform: translateX(-150px)
+          max-width: 500px
+          transform: translateX(-250px)
           z-index: 10
         .next_img
           position: absolute
