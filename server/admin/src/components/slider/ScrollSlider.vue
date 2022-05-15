@@ -27,8 +27,11 @@ export default {
   props: {
     activeId: Number
   },
-  mounted() {
+  created() {
     this.$emit('callBackEvent', this.activeId)
+  },
+  async mounted() {
+    this.selectActive()
   },
   computed: {
     ...mapGetters(["products"]),
@@ -80,9 +83,18 @@ export default {
       slide.scrollIntoView({ inline: "center", behavior: "smooth" });
       this.selectActive()
     },
-    selectActive(){
+    async selectActive(){
       let activeNow = document.querySelector(".slider_item.active");
-      this.$emit('callBackEvent', activeNow.dataset.id)
+      let next = activeNow.nextSibling
+      await this.$emit('callBackEvent', activeNow.dataset.id)
+      
+      if (next?.length == 0) {
+        let slides = [...document.querySelectorAll(".slider_item")];
+        this.$emit('nextItem', slides.shift().dataset.id)
+      }else{
+        this.$emit('nextItem', next.dataset.id)
+      }
+      
     }
   },
 };

@@ -20,6 +20,9 @@
       <transition name="fade">
         <img :src="product.img" :alt="product.title" :key="product.id">
       </transition>
+      <transition name="slide-fade">
+        <img class="next_img" :src="nextProduct.img" :alt="nextProduct.title" :key="nextProduct.id">
+      </transition>
       </div>
     </div>
   </div>
@@ -29,7 +32,8 @@ import { mapGetters } from 'vuex'
 import ScrollList from '@/components/ScrollList'
 import StarRating from 'vue-star-rating'
 import VueSlickCarousel from 'vue-slick-carousel'
-import ScrollSlider from '@/components/ScrollSlider'
+import ScrollSlider from '@/components/slider/ScrollSlider'
+import BigSlider from '@/components/slider/BigSlider'
 export default {
   data() {
     return {
@@ -37,13 +41,25 @@ export default {
       isDown: false,
       startX: null,
       scrollLeft: null,
-      productId: this.$route.params.id
+      productId: this.$route.params.id,
+      nextProductId: null,
     }
   },
   computed:{
     ...mapGetters(['products','ingredient']),
     product(){
         return [...this.products].filter(p=>p.id == this.productId)[0]
+    },
+    nextProduct(){
+      let cat = [...this.products].filter(p=>p.cat == this.product.cat)
+      let index = cat.findIndex(p=>p.id == this.product.id)  
+      let next = cat[index+1]
+      if(next){
+        return next
+      }else{
+        return cat[1]
+      }
+      
     },
     ingredientArr(){
       let ingredients = [...this.ingredient]
@@ -54,6 +70,7 @@ export default {
   components: {
     ScrollList,
     ScrollSlider,
+    BigSlider,
     StarRating,
     VueSlickCarousel
   },
