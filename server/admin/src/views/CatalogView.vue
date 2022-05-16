@@ -1,5 +1,5 @@
 <template>
-  <div class="page view_catalog">
+  <div class="page view_catalog csll">
     <ScrollList list-class="catalog_cat_list" :items="category" :call-back-events="filterItems()"/>
     <div class="catalog_head">
       <div class="catalog_head_start">
@@ -20,7 +20,7 @@
       </div>
     </div>
     
-    <div class="catalog_list csll">
+    <div class="catalog_list">
       <div class="catalog_list_item" v-for="item in items" :key="item.id">
         <span class="catalog_list_item_status"><i class="fa fa-fire"></i></span>
          <router-link :to="{ path: `/detail/${item.id}`}" class="catalog_list_item_media">

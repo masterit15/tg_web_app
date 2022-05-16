@@ -6,11 +6,11 @@
         :class="item.id == activeId ? 'active' : ''"
         :src="item.img"
         alt=""
-        v-for="item in items"
-        :key="item.id"
+        v-for="(item, index) in items"
+        :key="index"
         :data-id="item.id"
         @click="activeItem($event, 
-        item.id)"
+        item.id, index)"
       />
     </div>
     <div class="slider_nav">
@@ -27,6 +27,10 @@
 import { mapGetters } from 'vuex'
 export default {
   props: {
+    items: {
+      type: Array,
+      default: ()=> []
+    },
     activeId: Number
   },
   created() {
@@ -35,29 +39,14 @@ export default {
   async mounted() {
     this.selectActive()
   },
-  computed: {
-    ...mapGetters(["products"]),
-    product() {
-      if (this.$route.params.id) {
-        return [...this.products].filter(
-          (p) => p.id == this.$route.params.id
-        )[0];
-      } else {
-        return "this.products";
-      }
-    },
-    items() {
-      return [...this.products].filter((p) => p.cat == this.product.cat);
-    },
-  },
   methods: {
-    activeItem(e, id){
+    activeItem(e, id, index){
       let slides = [...document.querySelectorAll(".slider_item")];
       slides.forEach(s=>s.classList.remove('active'))
       e.target.classList.add('active')
       this.selectActive()
     },
-    prev(e) {
+    prev() {
       let slide = document.querySelector(".slider_item.active");
       let prev = slide.previousSibling;
       let next = prev.nextSibling;
@@ -95,7 +84,6 @@ export default {
       let activeNow = document.querySelector(".slider_item.active");
       let next = activeNow.nextSibling
       await this.$emit('callBackEvent', activeNow.dataset.id)
-      
       if (next?.length == 0) {
         let slides = [...document.querySelectorAll(".slider_item")];
         this.$emit('nextItem', slides.shift().dataset.id)

@@ -14,16 +14,10 @@
           <h3 class="catalog_detail_item_price"><i class="fa fa-rub"></i>{{product.price}}</h3>
           <button class="catalog_detail_item_addcart">Добавить в корзину</button>
         </div>
-      <scroll-slider :active-id="Number(productId)" v-on:call-back-event="getProductDetail"/>
+      <scroll-slider :active-id="Number(productId)" :items="items" v-on:call-back-event="getProductDetail"/>
       </div>
       <div class="catalog_detail_item_media" :style="{backgroundImage: `url(${require('../assets/pattern.jpg')})`}">
-      <BigSlider :items="items" :active-id="Number(productId)"/>
-      <!-- <transition name="fade">
-        <img :src="product.img" :alt="product.title" :key="product.id">
-      </transition>
-      <transition name="slide-fade">
-        <img class="next_img" :src="nextProduct.img" :alt="nextProduct.title" :key="nextProduct.id">
-      </transition> -->
+        <BigSlider :items="items" :active-id="Number(productId)"/>
       </div>
     </div>
   </div>
@@ -53,17 +47,6 @@ export default {
     },
     items() {
       return [...this.products].filter((p) => p.cat == this.product.cat);
-    },
-    nextProduct(){
-      let cat = [...this.products].filter(p=>p.cat == this.product.cat)
-      let index = cat.findIndex(p=>p.id == this.product.id)  
-      let next = cat[index+1]
-      if(next){
-        return next
-      }else{
-        return cat[1]
-      }
-      
     },
     ingredientArr(){
       let ingredients = [...this.ingredient]

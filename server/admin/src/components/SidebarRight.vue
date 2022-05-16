@@ -1,7 +1,7 @@
 <template>
   <aside id="sidebar_right">
         <div class="catalog_list csll">
-      <div class="catalog_list_item" v-for="item in items" :key="item.id">
+      <div class="catalog_list_item vert" v-for="item in items" :key="item.id">
         <span class="catalog_list_item_status"><i class="fa fa-fire"></i></span>
         <img :src="item.img" alt="" class="catalog_list_item_media" />
         <div class="catalog_list_item_content">
