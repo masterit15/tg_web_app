@@ -98,7 +98,6 @@ export default {
       
       if (next?.length == 0) {
         let slides = [...document.querySelectorAll(".slider_item")];
-        console.log(slides.shift().dataset.id);
         this.$emit('nextItem', slides.shift().dataset.id)
       }else{
         this.$emit('nextItem', next.dataset.id)
