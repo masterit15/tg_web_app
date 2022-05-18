@@ -1,9 +1,38 @@
-import {mapActions} from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
 const mixins = {
+  data () {
+    return {
+      displayNumber:0,
+      interval:false
+    }
+  },
+  watch: {
+    totalPrice () {
+      clearInterval(this.interval);
+      if(this.totalPrice == this.displayNumber) {
+        return;
+      }
+      this.interval = window.setInterval(() => {
+        if(this.displayNumber != this.totalPrice) {
+          var change = (this.totalPrice - this.displayNumber) / 10;
+          change = change >= 0 ? Math.ceil(change) : Math.floor(change);
+          this.displayNumber = this.displayNumber + change;
+        }
+      }, 20);
+    }
+  },
   computed: {
+    ...mapGetters(['cart']),
     pageNow() {
       return this.$route.name;
     },
+    totalPrice(){
+      let total = 0
+      this.cart.forEach(ce => {
+        total += ce.price * ce.count
+      });
+      return total
+    }
   },
   methods: {
     ...mapActions(['addCartProduct', 'deleteCartProduct']),
