@@ -1,3 +1,35 @@
+.map
+  height: 100%
+  position: relative
+  .main_map_marker
+    width: 20px
+    height: 20px
+    border-radius: 100%
+    background-color: $red
+    transition: all .3s ease
+    &.active
+      background-color: $green
+      box-shadow: 0 0 0 10px rgba($green,0.4),0 0 0 20px rgba($green,0.2)
+      transition: all .3s ease
+  & .catalog
+      &_list
+        // background-color: rgba($bodyColor, 0.9)
+        padding: 50px 20px 50px 50px
+        position: absolute
+        top: 15px
+        overflow-y: auto
+        max-width: 800px
+        gap: 10px
+        height: calc(100vh - 100px)
+        z-index: 100
+.view_cart
+  & .catalog
+      &_list
+        &_item
+          &.vert
+            height: 130px
+          &_footer
+            padding: 0 20px
 .catalog
   &_detail
     &_item
@@ -92,15 +124,14 @@
           top: 0
           width: 100%
           height: 100%
-          background-color: rgba($red,.8)
-        
+          background-color: rgba($red,.8)       
   &_cat
     &_list
       display: flex
       justify-content: flex-start
       align-items: center
       width: 100%
-      height: 100%
+      flex: 0 0 150px
       gap: 30px
       margin-bottom: 20px
       transition: all .3s ease
@@ -166,9 +197,9 @@
   &_list
     display: flex
     width: 100%
-    height: 600px
     justify-content: space-around
     gap: 30px
+    padding-bottom: 20px
     flex-wrap: wrap
     &_item
       flex-basis: 30%
@@ -182,7 +213,7 @@
       &.vert
         flex-basis: 100%
         overflow: hidden
-        height: 200px
+        height: 180px
         flex-direction: row
         background-color: $dark
         border-radius: $borderRadius
@@ -195,13 +226,21 @@
                 &::before
                   display: none
               &_status
-                left: 85%
+                left: 15px
+                top: 15px
                 z-index: 10
               &_media
                 width: auto
                 height: 100px
+                margin-left: 20px
               &_price
-                font-size: 14px
+                font-size: 18px
+              &_action
+                max-width: 110px
+                &_bay
+                  width: 30px
+                  height: 30px
+                  background-color: $bodyColor!important
       &_content
         position: relative
         display: flex
@@ -254,6 +293,7 @@
         display: flex
         justify-content: space-between
         align-items: center
+        width: 100%
         height: 50px
       &_action
         display: flex
@@ -261,7 +301,7 @@
         align-items: center
         width: 100%
         gap: 5px
-        max-width: 120px
+        max-width: 130px
         &_bay
           cursor: pointer
           width: 40px
@@ -271,14 +311,37 @@
           display: flex
           font-family: $Comfortaa
           justify-content: center
+          padding: 8px
           align-items: center
-          
+          & > span
+            position: relative
+            display: block
+            width: 100%
+            height: 3px
+            border-radius: 10px
+            background-color: #eee
+            &::before
+              content: ''
+              position: absolute
+              left: 0
+              right: 0
+              top: 0
+              bottom: 0
+              margin: auto
+              width: 100%
+              height: 3px
+              transform: rotate(90deg)
+              border-radius: 10px
+              background-color: inherit
           &.plus
             background-color: $green
           &.minus
             background-color: $red
             opacity: 0
             transition: all .3s ease-in-out
+            & > span
+              &::before
+                display: none
             &.active
               opacity: 1
               transition: all .3s ease-in
@@ -286,7 +349,7 @@
             width: 35px
             height: 40px
             border-radius: 10px
-            background-color: $contentColor
+            background-color: $dark
             border: none
             text-align: center
             font-size: 18px

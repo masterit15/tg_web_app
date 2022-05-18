@@ -2,16 +2,15 @@
   <div class="page view_cart">
     <h3 class="page_title">{{ pageNow }}</h3>
     <div class="catalog_list">
-      <div class="catalog_list_item" v-for="item in cart" :key="item.id">
+      <div class="catalog_list_item vert" v-for="item in cart" :key="item.id">
         <span class="catalog_list_item_status"><i class="fa fa-fire"></i></span>
         <img :src="item.img" alt="" class="catalog_list_item_media" />
         <div class="catalog_list_item_content">
           <h3 class="catalog_list_item_title">{{item.title}}</h3>
-          <p class="catalog_list_item_desc">{{item.description}}</p>
-          <div class="catalog_list_item_footer">
-            <h2 class="catalog_list_item_price"><i class="fa fa-rub"></i> {{item.price}}</h2>
+        </div>
+        <div class="catalog_list_item_footer">
             <div class="catalog_list_item_action">
-              <span class="catalog_list_item_action_bay minus" :class="{active: Number(item.count) > 0}" @click="bayCount($event, 'minus', item)">&minus;</span>
+              <span class="catalog_list_item_action_bay minus" :class="{active: Number(item.count) > 0}" @click="bayCount($event, 'minus', item)"><span></span></span>
               <input
                 type="text"
                 name="count"
@@ -19,10 +18,10 @@
                 :class="{active: Number(item.count) > 0}"
                 :value="item.count"
               />
-              <span class="catalog_list_item_action_bay plus" @click="bayCount($event, 'plus', item)">+</span>
+              <span class="catalog_list_item_action_bay plus" @click="bayCount($event, 'plus', item)"><span></span></span>
             </div>
+            <h2 class="catalog_list_item_price"><i class="fa fa-rub"></i> {{item.price}}</h2>
           </div>
-        </div>
       </div>
     </div>
     <div class="send_invoice" v-if="cart.length > 0">

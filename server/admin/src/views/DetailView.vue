@@ -12,7 +12,7 @@
           <span>Ингредиенты:</span><ScrollList list-class="catalog_detail_item_ingredient" :items="ingredientArr" :hide-title="false"/>
           </div>
           <h3 class="catalog_detail_item_price"><i class="fa fa-rub"></i>{{product.price}}</h3>
-          <button class="catalog_detail_item_addcart">Добавить в корзину</button>
+          <button class="catalog_detail_item_addcart" @click="addToCart(1,product)">Добавить в корзину</button>
         </div>
       <scroll-slider :active-id="Number(productId)" :items="items" v-on:call-back-event="getProductDetail"/>
       </div>
@@ -29,7 +29,9 @@ import StarRating from 'vue-star-rating'
 import VueSlickCarousel from 'vue-slick-carousel'
 import ScrollSlider from '@/components/slider/ScrollSlider'
 import BigSlider from '@/components/slider/BigSlider'
+import mixins from '@/mixins'
 export default {
+  mixins: [mixins],
   data() {
     return {
       rating: 5,

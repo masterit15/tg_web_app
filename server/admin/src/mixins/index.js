@@ -10,6 +10,11 @@ const mixins = {
     numberFormate(x) {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
+    addToCart(count ,product){
+      const prd = {...product}
+      prd.count = count
+      this.addCartProduct(prd)
+    },
     bayCount(event, param, product){
       let parent = event.target.closest('.catalog_list_item_action')
       let minus = parent.querySelector('.minus')

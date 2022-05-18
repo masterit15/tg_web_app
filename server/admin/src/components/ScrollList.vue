@@ -101,7 +101,7 @@ export default {
   cursor: pointer
   transition: all .3s ease
   overflow-x: auto
-  overflow-y: hidden
+  // overflow-y: hidden
   list-style: none
   white-space: nowrap
   &::-webkit-scrollbar

@@ -24,7 +24,6 @@ export default {
       console.log('SOCKET_sendOrders', msg);
     },
     addCartProduct({ commit }, product) {
-      console.log(product);
       commit('setCartProduct', product)
     },
     deleteCartProduct({ commit }, id) {
