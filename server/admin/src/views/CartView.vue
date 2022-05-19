@@ -1,7 +1,7 @@
 <template>
   <div class="page view_cart">
     <h3 class="page_title">{{ pageNow }}</h3>
-    <div class="catalog_list">
+    <div class="catalog_list csll">
       <div class="catalog_list_item vert" v-for="item in cart" :key="item.id">
         <span class="catalog_list_item_status"><i class="fa fa-fire"></i></span>
         <img :src="item.img" alt="" class="catalog_list_item_media" />
@@ -24,8 +24,8 @@
           </div>
       </div>
     </div>
-    <div class="send_invoice" v-if="cart.length > 0">
-      <button class="send_invoice_btn"  @click="sendInvoiceToBot">Заказать</button>
+    <div class="send_invoice"  :class="cart.length > 0 ? 'show': 'hide'">
+      <button class="send_invoice_btn" v-if="cart.length > 0"  @click="sendInvoiceToBot">Заказать</button>
     </div>
   </div>
 </template>

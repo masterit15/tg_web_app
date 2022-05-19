@@ -11,7 +11,7 @@
         <span class="border"></span>
       </div>
       <div class="field_group otp">
-        <input v-model="otp" type="password" name="otp" id="otp">
+        <input v-model="otp" type="password" placeholder="OTP пароль" name="otp" id="otp">
         <span class="border"></span>
         <span class="otp_timer"></span>
         <span class="otp_btn" @click="sendMeOTP()"><i class="fa-solid fa-rotate"></i></span>

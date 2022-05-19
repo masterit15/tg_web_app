@@ -17,8 +17,10 @@ export default {
       listItems: [
         { title: "Главная", icon: "fa-home", href: "/" },
         { title: "Каталог", icon: "fa-cubes", href: "/catalog" },
-        { title: "Пользователи", icon: "fa-user", href: "/workers" },
         { title: "Карта", icon: "fa-map-marker", href: "/map" },
+        { title: "Пользователи", icon: "fa-user", href: "/workers" },
+        { title: "Доставки", icon: "fa-truck", href: "/delivered" },
+        { title: "Настройки", icon: "fa-sliders", href: "/settings" },
       ],
     };
   },

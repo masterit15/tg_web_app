@@ -57,6 +57,24 @@ const routes = [
     }
   },
   {
+    path: '/delivered',
+    name: 'Доставки',
+    component: () => import('../views/Delivered.vue'),
+    meta: {
+      layout: 'main',
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/settings',
+    name: 'Настройки',
+    component: () => import('../views/Settings.vue'),
+    meta: {
+      layout: 'main',
+      requiresAuth: true
+    }
+  },
+  {
     path: '/auth',
     name: 'Авторизация',
     component: () => import('../views/AuthView.vue'),
