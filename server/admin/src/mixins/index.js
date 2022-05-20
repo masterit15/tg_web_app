@@ -39,6 +39,13 @@ const mixins = {
     numberFormate(x) {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
+    calcWeight(weight){
+      if(weight > 0 && weight < 1000){
+        return `${weight} г`
+      }else{
+        return `${weight/1000} кг`
+      }
+    },
     addToCart(count ,product){
       const prd = {...product}
       prd.count = count

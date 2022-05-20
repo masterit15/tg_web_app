@@ -7,6 +7,7 @@
         <img :src="item.img" alt="" class="catalog_list_item_media" />
         <div class="catalog_list_item_content">
           <h3 class="catalog_list_item_title">{{item.title}}</h3>
+          <span class="catalog_list_item_weight">{{calcWeight(item.weight)}}</span>
         </div>
         <div class="catalog_list_item_footer">
             <div class="catalog_list_item_action">
@@ -20,12 +21,16 @@
               />
               <span class="catalog_list_item_action_bay plus" @click="bayCount($event, 'plus', item)"><span></span></span>
             </div>
+            
             <h2 class="catalog_list_item_price"><i class="fa fa-rub"></i> {{item.price}}</h2>
           </div>
       </div>
     </div>
     <div class="send_invoice"  :class="cart.length > 0 ? 'show': 'hide'">
       <button class="send_invoice_btn" v-if="cart.length > 0"  @click="sendInvoiceToBot">Заказать</button>
+      <div class="send_invoice_price" v-if="cart.length > 0">
+        Заказ на сумму: <span><span id="value">{{displayNumber}}</span> <i class="fa-solid fa-ruble-sign"></i></span>
+      </div>
     </div>
   </div>
 </template>
