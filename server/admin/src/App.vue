@@ -11,19 +11,22 @@
 <script>
 import EmptyLayout from "./layouts/EmptyLayout";
 import MainLayout from "./layouts/MainLayout";
-import {mapActions} from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
 export default {
   name: "App",
   data() {
     return {
     };
   },
-  updated(){
-    if(!this.checkAuth()){
-      this.$route.puch('/auth')
+  async updated(){
+    await this.checkAuth()
+    console.log(this.isAuth);
+    if(!this.isAuth){
+      this.$router.push('/auth')
     }
   },
   computed: {
+    ...mapGetters(['isAuth']),
     layout() {
       return (this.$route.meta.layout || "empty") + "-layout";
     }

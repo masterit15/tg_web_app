@@ -17,6 +17,7 @@
         <button class="btn_view_all">
           Все<i class="fa fa-chevron-right" aria-hidden="true"></i>
         </button>
+        <button class="btn add" @click="openEditor()"><span></span></button>
       </div>
     </div>
     
@@ -50,7 +51,7 @@
   </div>
 </template>
 <script>
-import {mapGetters} from "vuex";
+import {mapGetters, mapActions} from "vuex";
 import Filter from "@/components/filter/Filter";
 import ScrollList from "@/components/ScrollList";
 import mixins from '@/mixins/'
@@ -74,35 +75,6 @@ export default {
       ]
     };
   },
-  mounted() {
-//     const slider = document.querySelector('.catalog_cat_list');
-// let isDown = false;
-// let startX;
-// let scrollLeft;
-
-// slider.addEventListener('mousedown', (e) => {
-//   isDown = true;
-//   slider.classList.add('active');
-//   startX = e.pageX - slider.offsetLeft;
-//   scrollLeft = slider.scrollLeft;
-// });
-// slider.addEventListener('mouseleave', () => {
-//   isDown = false;
-//   slider.classList.remove('active');
-// });
-// slider.addEventListener('mouseup', () => {
-//   isDown = false;
-//   slider.classList.remove('active');
-// });
-// slider.addEventListener('mousemove', (e) => {
-//   if(!isDown) return;
-//   e.preventDefault();
-//   const x = e.pageX - slider.offsetLeft;
-//   const walk = (x - startX) * 3; //scroll-fast
-//   slider.scrollLeft = scrollLeft - walk;
-//   console.log(walk);
-// });
-  },
   components: {
     Filter,
     ScrollList
@@ -111,7 +83,6 @@ export default {
     ...mapGetters(['products']),
     items(){
       const productArr = [...this.products]
-      
       if(this.filterParams.name){
         return productArr.filter(p=>this.filterParams.name.toLowerCase().split(' ').every(v => p.title.toLowerCase().includes(v)))
       }else if(this.filterParams.cat){
@@ -122,12 +93,16 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['productEditorOpen']),
     filtered(params) {
       this.filterParams = params
       console.log("filtered", params);
     },
     filterItems(id){
           this.filterParams.cat = id
+    },
+    openEditor(){
+      this.productEditorOpen(true)
     }
   },
 };

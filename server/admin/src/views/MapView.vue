@@ -34,7 +34,7 @@
     @map-was-initialized="mapCreated"
     :controls="[]"
   >
-  <ymap-marker 
+  <!-- <ymap-marker 
       marker-id="123" 
       :coords="coords"
       :properties="properties"
@@ -42,7 +42,7 @@
       @mouseenter="enterToMarker($event)"
       @mouseleave="leaveToMarker($event)"
       :balloon-template="balloonTemplate"
-    />
+    /> -->
   </yandex-map>
 </div>
 

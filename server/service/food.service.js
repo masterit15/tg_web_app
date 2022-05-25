@@ -9,8 +9,8 @@ class FoodService {
     const menu = await FoodModel.create({ name,images,price,weight,portion,properties,description })
     return menu
   }
-  async update(id, name,images,price,weight,portion,properties,description) {
-    const menu = await FoodModel.update({ name,images,price,weight,portion,properties,description }, { where: { id } })
+  async update(id,name,images,price,weight,portion,properties,description) {
+    const menu = await FoodModel.update({name,images,price,weight,portion,properties,description }, { where: { id } })
     return menu
   }
   async getAll() {
@@ -21,7 +21,5 @@ class FoodService {
     const menu = await FoodModel.destroy({ where: { id } });
     return menu;
   }
-
 }
-
 export default new FoodService();

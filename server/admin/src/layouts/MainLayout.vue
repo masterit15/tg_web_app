@@ -13,6 +13,7 @@
           <app-sidebar-right v-if="!$route.path.includes('detail')" />
       </main>
       <app-footer />
+      <EditorProduct/>
       </div>
     </div>
   </div>
@@ -22,12 +23,14 @@ import AppHeader from "../components/Header";
 import AppSidebar from "../components/Sidebar";
 import AppSidebarRight from "../components/SidebarRight";
 import AppFooter from "../components/Footer";
+import EditorProduct from "../components/editor/ProductEditor"
 export default {
   components: {
     AppHeader,
     AppSidebar,
     AppFooter,
-    AppSidebarRight
+    AppSidebarRight,
+    EditorProduct
   },
   sockets: {
     connect: function () {

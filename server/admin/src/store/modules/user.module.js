@@ -31,6 +31,7 @@ export default {
         commit('setUser', response.data.user);
         return response.data
       } catch (e) {
+          commit('setAuth', false);
           console.log(e.response?.data?.message);
       }
     },
@@ -59,10 +60,9 @@ export default {
           localStorage.setItem('token', response.data.accessToken);
           commit('setAuth', true);
           commit('setUser', response.data.user);
-          return true
       } catch (e) {
           console.log(e.response?.data?.message);
-          return false
+          commit('setAuth', false);
       } finally {
           commit('setLoading', false);
       }

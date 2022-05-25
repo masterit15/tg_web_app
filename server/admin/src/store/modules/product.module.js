@@ -1,5 +1,6 @@
 export default {
   state: {
+    editorProductShow: false,
     ingredient: [
       {id:1, title: 'Лук', media: require('@/assets/ingredient_img/onion.svg')},
       {id:2, title: 'Бекон', media: require('@/assets/ingredient_img/bacon.svg')},
@@ -28,16 +29,26 @@ export default {
   },
   getters: {
     products: (state) => state.products,
-    ingredient: (state) => state.ingredient
+    ingredient: (state) => state.ingredient,
+    editorProductShow: (state) => state.editorProductShow
   },
   mutations: {
     setProducts(state, products) {
       state.products = products
+    },
+    setProductEditor(state, param) {
+      state.editorProductShow = param
     }
   },
   actions: {
     getProducts({ commit }, params) {
       commit('setCartProduct', products)
-    }
+    },
+    productEditorOpen({commit}, param){
+      commit('setProductEditor', param)
+    },
+    productEditorClose({commit}, param){
+      commit('setProductEditor', param)
+    },
   }
 }
