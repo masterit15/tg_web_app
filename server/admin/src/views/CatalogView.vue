@@ -62,17 +62,6 @@ export default {
     return {
       isShow: false,
       filterParams: {},
-      category: [
-        {id:1, title: "Бургеры", media: require('../assets/menu_cat_img/burger.svg')},
-        {id:2, title: "Сендвичи", media: require('../assets/menu_cat_img/sandwich.svg')},
-        {id:3, title: "Пицца", media: require('../assets/menu_cat_img/pizzafood.svg')},
-        {id:4, title: "Салаты", media: require('../assets/menu_cat_img/salad.svg')},
-        {id:5, title: "Кортошка", media: require('../assets/menu_cat_img/potatoes.svg')},
-        {id:6, title: "Хотдоги", media: require('../assets/menu_cat_img/foodhotdog.svg')},
-        {id:7, title: "Напитки", media: require('../assets/menu_cat_img/batidogranizado.svg')},
-        {id:8, title: "Кофе", media: require('../assets/menu_cat_img/coffecuptotakeaway.svg')},
-        {id:9, title: "Ролы", media: require('../assets/menu_cat_img/sushifood.svg')},
-      ]
     };
   },
   components: {
@@ -80,7 +69,7 @@ export default {
     ScrollList
   },
   computed: {
-    ...mapGetters(['products']),
+    ...mapGetters(['products', 'category']),
     items(){
       const productArr = [...this.products]
       if(this.filterParams.name){

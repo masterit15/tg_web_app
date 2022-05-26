@@ -1,6 +1,6 @@
 .editor
   &_product
-    width: 80%
+    width: 50%
     height: 100%
     background-color: $dark
     position: absolute
@@ -24,3 +24,54 @@
       font-size: 24px
       color: $red
       border-radius: 20px 0 0 20px
+    &_wrap
+      padding: 20px
+      display: flex
+      justify-content: flex-start
+      gap: 30px
+      flex-direction: column
+.field
+  &_group
+    border: 1px solid rgba($textColor,0.2)
+    border-radius: 10px
+    padding: 10px
+    position: relative
+    &_legend
+      font-weight: bold
+      color: $textColor
+      margin-left: 5px
+      padding-left: 5px
+      padding-right: 5px
+    &_dropdown
+      width: 100%
+      position: absolute
+      top: 100%
+      background-color: $dark
+      box-shadow: 0 3px 20px rgba($contentColor,0.5)
+      list-style: none
+      border-radius: 10px
+      height: 0
+      overflow: hidden
+      transition: all .2s ease
+      &.active
+        height: auto
+        transition: all .2s ease
+      li
+        padding: 8px 30px
+        cursor: pointer
+        transition: all .2s ease
+        &:hover
+          color: $green
+          background-color: rgba($green,0.2)
+          transition: all .2s ease
+    &_input
+      width: 100%
+      height: 35px
+      border: none
+      background-color: $contentColor
+      border-radius: 10px
+      color: $textColor
+      padding: 0 15px
+      font-size: 18px
+      &:focus
+        outline: none
