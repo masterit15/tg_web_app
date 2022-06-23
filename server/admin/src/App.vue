@@ -1,4 +1,5 @@
 <template>
+  <div class="eee">
     <component :is="layout">
       <router-view v-slot="{ Component }">
         <transition name="fade">
@@ -6,37 +7,40 @@
         </transition>
       </router-view>
     </component>
+    <toast-manager></toast-manager>
+  </div>
 </template>
 
 <script>
 import EmptyLayout from "./layouts/EmptyLayout";
 import MainLayout from "./layouts/MainLayout";
-import {mapActions, mapGetters} from 'vuex'
+import { mapActions, mapGetters } from "vuex";
+import ToastManager from "@/components/Toast/ToastManager.vue";
 export default {
   name: "App",
   data() {
-    return {
-    };
+    return {};
   },
-  async updated(){
-    await this.checkAuth()
+  async updated() {
+    await this.checkAuth();
     console.log(this.isAuth);
-    if(!this.isAuth){
-      this.$router.push('/auth')
+    if (!this.isAuth) {
+      this.$router.push("/auth");
     }
   },
   computed: {
-    ...mapGetters(['isAuth']),
+    ...mapGetters(["isAuth"]),
     layout() {
       return (this.$route.meta.layout || "empty") + "-layout";
-    }
+    },
   },
   components: {
+    ToastManager,
     EmptyLayout,
-    MainLayout
+    MainLayout,
   },
   methods: {
-    ...mapActions(['checkAuth'])
+    ...mapActions(["checkAuth"]),
   },
 };
 </script>

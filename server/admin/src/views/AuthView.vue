@@ -1,6 +1,7 @@
 <template>
 <!-- :style="{backgroundImage: `url(${images})`}" -->
   <div class="auth" > 
+    
     <form @submit.prevent="authorization" class="auth_form" action="" method="post">
       <div class="field_group">
         <input v-model="login" type="text" name="login" id="login" autocomplete="off">
@@ -22,6 +23,7 @@
 </template>
 <script>
 import {mapActions} from 'vuex'
+
 export default {
   data() {
     return {
@@ -32,11 +34,18 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['auth', 'sendOTP']),
+    ...mapActions(['auth', 'sendOTP', 'addToast']),
     async authorization(){
       const res = await this.auth({login: this.login, password: this.password, otp: this.otp})
+      console.log(res);
       if(res.success){
         this.$router.push('/') 
+      }else{
+        this.addToast({
+          type: 'danger',
+          duration: 2000,
+          text: res,
+        });
       }
     },
     sendMeOTP(){

@@ -4,6 +4,7 @@ import productModule from './modules/product.module'
 import userModule from './modules/user.module'
 import workerModule from './modules/worker.module'
 import cartModule  from './modules/cart.module'
+import toastModule from './modules/toast.module'
 export default createStore({
   state: {
   },
@@ -18,7 +19,8 @@ export default createStore({
     userModule,
     workerModule,
     productModule,
-    cartModule 
+    cartModule,
+    toastModule
 
   }
 })

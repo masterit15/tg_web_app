@@ -2,7 +2,19 @@
   <div class="editor_product" :class="editorProductShow ? 'active' : ''">
     <span class="btn_close" @click="close"><i class="fa fa-times"></i></span>
     <div class="editor_product_wrap">
-      <pre>{{ product }}</pre>
+      <!-- <pre>{{ product }}</pre> -->
+      <fieldset class="field_group">
+        <legend class="field_group_legend" >Фото</legend>
+        <div class="field_group_file" @click="addPhoto()">
+          <div class="field_group_file_img_wrap"></div>
+        </div>
+        <input
+          title="Фото блюда"
+          type="file"
+          class="field_group_input_file"
+          :disabled="isEdit"
+        />
+      </fieldset>
       <fieldset class="field_group">
         <legend class="field_group_legend">Название</legend>
         <input
@@ -22,7 +34,6 @@
           class="field_group_input"
           :disabled="isEdit"
           @focus="$refs.dd.classList.add('active')"
-          @blur="$refs.dd.classList.remove('active')"
         />
         <ul class="field_group_dropdown" ref="dd" >
           <li
@@ -52,6 +63,12 @@ const defaultProductObject = {
   description: "",
   weight: 0,
 };
+const toBase64 = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+});
 export default {
   props: {
     productObj: Object,
@@ -89,6 +106,19 @@ export default {
   },
   methods: {
     ...mapActions(["productEditorClose"]),
+    addPhoto(){
+      let inputFile = document.querySelector('.field_group_input_file')
+      const inputFileParent = document.querySelector('.field_group_file_img_wrap')
+      inputFile.click()
+      inputFile.addEventListener('change', async(e)=>{
+        const files = await toBase64(e.target.files[0])
+        // console.log(e.target.files[0].name);
+        this.product.img = files
+        inputFileParent.innerHTML = ''
+        inputFileParent.innerHTML = `<img class="field_group_file_img" src="${files}" title="${e.target.files[0].name}"/>`
+      })
+      
+    },
     close() {
       this.productEditorClose(false);
     },

@@ -33,13 +33,16 @@ export default {
       } catch (e) {
           commit('setAuth', false);
           console.log(e.response?.data?.message);
+          return e.response?.data?.message     
       }
     },
     async sendOTP({}){
       try {
         const response = await $api.post('/otp/send')
+        return response.data
       } catch (e) {
-          console.log(e.response?.data?.message);
+        return e.response?.data?.message
+        console.log(e.response?.data?.message);
       }
     },
     async logout({commit}){
