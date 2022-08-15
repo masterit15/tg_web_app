@@ -3,7 +3,7 @@
     <ul>
       <li v-for="item in listItems" :key="item.title">
         <router-link :to="item.href">
-          <i :class="'fa ' + item.icon"></i>
+          <i :class="`fa ${item.icon}`"></i>
           <span class="sidebar_item_text">{{ item.title }}</span>
         </router-link>
       </li>

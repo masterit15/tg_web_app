@@ -36,6 +36,7 @@ import userRoute from './router/user.routes.js'
 import tableRoute from './router/table.routes.js'
 import botRoute from './router/bot.routes.js'
 import otpRoute from './router/otp.routes.js'
+
 app.use(cors(corsOptions));
 app.use('/api/menu',  menuRoute);
 app.use('/api/food', foodRoute);
@@ -44,7 +45,9 @@ app.use('/api/table', tableRoute);
 app.use('/api/refresh', userRoute);
 app.use('/api/bot', botRoute);
 app.use('/api/otp', otpRoute);
+
 app.use(errorMiddleware);
+
 if (process.env.NODE_ENV === 'production') {
   app.use('/admin', express.static(path.join(path.dirname('admin'), 'admin', 'dist')))
   app.get('*', (req, res) => {

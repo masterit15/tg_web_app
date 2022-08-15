@@ -1,4 +1,3 @@
-
 export default {
   state: {
     cart: []
@@ -22,6 +21,9 @@ export default {
   actions: {
     SOCKET_sendOrders({}, msg){
       console.log('SOCKET_sendOrders', msg);
+    },
+    sendInvoice({dispatch}, product){
+      dispatch('SOCKET_sendOrders', product)
     },
     addCartProduct({ commit }, product) {
       commit('setCartProduct', product)

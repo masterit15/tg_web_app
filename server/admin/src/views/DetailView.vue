@@ -5,7 +5,7 @@
         <div class="catalog_detail_item_content">
           <h2 class="catalog_detail_item_title">{{product.title}}</h2>
           <div class="catalog_detail_item_rating">
-          <span>Рейтинг:</span><star-rating :rating="rating" :star-size="20" active-color="#F83E55" :glow="1" glow-color="#F83E55" :show-rating="false"/>
+          <span>Рейтинг:</span><star-rating @update:rating="setRating" :rating="calcRating([...product.rating])"  :star-size="20" active-color="#F83E55" :glow="1" glow-color="#F83E55" :show-rating="false"/>
           </div>
           <p class="catalog_detail_item_desc">{{product.description}}</p>
           <div class="catalog_detail_item_ingredient_wrap">
@@ -23,7 +23,7 @@
   </div>
 </template>
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import ScrollList from '@/components/ScrollList'
 import StarRating from 'vue-star-rating'
 import VueSlickCarousel from 'vue-slick-carousel'
@@ -34,7 +34,7 @@ export default {
   mixins: [mixins],
   data() {
     return {
-      rating: 5,
+      rating: 0,
       isDown: false,
       startX: null,
       scrollLeft: null,
@@ -64,8 +64,24 @@ export default {
     VueSlickCarousel
   },
   methods: {
+    ...mapActions(['updateProductRating']),
     getProductDetail(id){
       this.productId = Number(id)
+    },
+    setRating(rating){
+      let star = --rating
+      this.product.rating[star]++
+      this.updateProductRating({id: this.product.id, rating: this.product.rating})
+    },
+    calcRating(rating){
+      let rate = 0
+      let total = 0
+      rating.forEach((r,i) => {
+        rate += ++i * r
+        total += r
+      });
+      console.log(rate / total);
+      return Math.round(rate / total)
     }
   },
 }

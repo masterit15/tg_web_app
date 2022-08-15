@@ -10,7 +10,7 @@
 </template>
 <script>
 let toastID = 0;
-let hellos = ['Здорова!', 'Пидор!', 'Съешь мои шорты!', 'Лабу...лабу даб..даб!', 'Aloha!'];
+let hellos = ['Здорова!', 'Привет!', 'Съешь мои шорты!', 'Лабу...лабу даб..даб!', 'Aloha!'];
 let states = ['success', 'danger', 'warning', 'info'];
 
 function randomInt (min, max) {
@@ -45,16 +45,16 @@ export default {
 </script>
 
 <style lang="sass">
-.toasts-item
-  transition: all 0.5s
+.toasts
+  &_item
+    transition: all 0.5s
 
-.toasts-enter, .toasts-leave-to
-  opacity: 0
-  transform: scale(0.9)
-
-.toasts-leave-active
-  position: absolute
-  z-index: -1
+  &-enter, &-leave-to
+    opacity: 0
+    transform: scale(0.9)
+  &-leave-active
+    position: absolute
+    z-index: -1
 
 .c-toasts
   position: fixed

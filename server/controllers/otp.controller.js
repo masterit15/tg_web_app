@@ -1,4 +1,3 @@
-import otpService from '../service/table.service.js'
 import otp from '../components/otp/index.js';
 import bot from '../components/telegram/index.js';
 class OtpController {

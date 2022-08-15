@@ -1,7 +1,8 @@
 <template>
   <div class="page view_cart">
     <h3 class="page_title">{{ pageNow }}</h3>
-    <div class="catalog_list csll">
+    <h4 v-if="cart.length == 0" style="text-align: center">Корзина пуста</h4>
+    <div v-else class="catalog_list csll">
       <div class="catalog_list_item vert" v-for="item in cart" :key="item.id">
         <span class="catalog_list_item_status"><i class="fa fa-fire"></i></span>
         <img :src="item.img" alt="" class="catalog_list_item_media" />
@@ -63,6 +64,7 @@ export default {
           products.push({label: product.title, amount: `${product.price}00` })
         }
       })
+      this.$socket.emit('sendOrders', products)
       this.sendInvoice(products)
     }
   }

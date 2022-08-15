@@ -10,7 +10,7 @@
               <component :is="Component" />
             </transition>
           </router-view>
-          <app-sidebar-right v-if="!$route.path.includes('detail')" />
+          <app-sidebar-right v-if="$route.path.includes('catalog')" />
       </main>
       <app-footer />
       <EditorProduct/>

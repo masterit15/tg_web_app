@@ -16,6 +16,9 @@ const client = new Clients()
 // const webpush = require('./webpush')
 
 io.on('connection', socket => {
+  socket.on('sendOrders', data=>{
+    console.log(data);
+  })
   // срабатывает при входе
   socket.on('clientJoined', async data => {
     const user = data
