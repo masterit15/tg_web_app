@@ -2,11 +2,14 @@
   <header id="header">
     <button class="btn_circle notify">
       <i class="fa fa-bell"></i
-      ><span class="count">{{ count > 99 ? 99 : count }}</span>
+      ><span class="count" v-if="count>0">{{ count > 99 ? 99 : count }}</span>
     </button>
-    <router-link class="btn_circle cart" to="/cart"
+    <button class="btn_circle cart" v-if="!cart.length">
+      <i class="fa fa-shopping-bag"></i>
+    </button>
+    <router-link v-else class="btn_circle cart active" to="/cart"
       ><i class="fa fa-shopping-bag"></i
-      ><span class="count" v-if="cart.length>0">{{
+      ><span class="count" >{{
         cart.length > 99 ? 99 : cart.length
       }}</span></router-link
     >
@@ -20,7 +23,7 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   data() {
     return {
-      count: 199,
+      count: 0,
     };
   },
   computed: {

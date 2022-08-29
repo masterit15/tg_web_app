@@ -50,9 +50,9 @@
           :disabled="isEdit"
           @focus="$refs.dding.classList.add('active')"
         />
-        <!-- <ul class="field_group_multiselect">
+        <ul class="field_group_multiselect">
           <li v-for="(item, index) in ing" :key="index"></li>
-        </ul> -->
+        </ul>
         <ul class="field_group_dropdown" ref="dding" >
           <li
             data-id=""
@@ -105,7 +105,7 @@ export default {
   data() {
     return {
       isEdit: false,
-      ing: [],
+      // ing: [],
       product: {
         name: "",
         cat: "",
@@ -134,13 +134,12 @@ export default {
       );
     },
     ing() {
-      // console.log(this.ingredient);
       return [...this.ingredient]
-      // .filter((c) =>
-      //   this.product.ingredient.title
-      //     .toLowerCase()
-      //     .split(" ")
-      //     .every((v) => c.title.toLowerCase().includes(v))
+      // .filter((c) =>{console.log(this.product.ingredient.title);}
+      //   // this.product.ingredient.title
+      //   //   .toLowerCase()
+      //   //   .split(" ")
+      //   //   .every((v) => c.title.toLowerCase().includes(v))
       // );
     },
   },
@@ -159,13 +158,9 @@ export default {
       
     },
     addIngredient(item){
-      // console.log([...this.product.ingredient]);
       if(![...this.product.ingredient].find(i=>i.title == item.title)){
         this.product.ingredient.push(item)
       }
-      // [...this.product.ingredient].forEach(element => {
-        
-      // });
     },
     close() {
       this.productEditorClose(false);

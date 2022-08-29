@@ -55,17 +55,17 @@ const mixins = {
       let parent = event.target.closest('.catalog_list_item_action')
       let minus = parent.querySelector('.minus')
       let input = parent.querySelector('.catalog_list_item_action_bay_count')
-      let value = Number(input.value) //== 0 ? 1 : Number(input.value)
+      let value = Number(input.innerText) //== 0 ? 1 : Number(input.innerText)
       const prd = {...product}
       if(param == 'plus'){
-        input.value = Number(value + 1)
+        input.innerText = Number(value + 1)
       }else{
-        input.value = Number(value - 1)
+        input.innerText = Number(value - 1)
       }
-      if(input.value > 0){
+      if(input.innerText > 0){
         input.classList.add('active')
         minus.classList.add('active')
-        prd.count = input.value
+        prd.count = input.innerText
         this.addCartProduct(prd)
       }else{
         input.classList.remove('active')

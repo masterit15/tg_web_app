@@ -12,11 +12,7 @@
             <span class="catalog_list_item_weight">{{calcWeight(item.weight)}}</span>
             <div class="catalog_list_item_action">
               <span class="catalog_list_item_action_bay minus" @click="bayCount($event, 'minus', item)"><span></span></span>
-              <input
-                type="text"
-                name="count"
-                class="catalog_list_item_action_bay_count"
-              />
+              <span class="catalog_list_item_action_bay_count"></span>
               <span class="catalog_list_item_action_bay plus" @click="bayCount($event, 'plus', item)"><span></span></span>
             </div>
           </div>

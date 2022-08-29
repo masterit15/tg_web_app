@@ -91,6 +91,11 @@ body
     justify-content: center
     align-items: center
     position: relative
+    &.cart
+      &.active
+        & .fa
+          color: $green
+          text-shadow: $green 0px 0px 30px
     &.notify
       // & .count
       //   background-color: $green
@@ -113,10 +118,10 @@ body
         & .fa
           color: $red
           text-shadow: $red 0px 0px 30px
-    &:hover
-      & .fa
-        color: $green
-        text-shadow: $green 0px 0px 30px
+    // &:hover
+    //   & .fa
+    //     color: $green
+    //     text-shadow: $green 0px 0px 30px
     & .fa
       color: $darkText
       font-size: 1.5rem

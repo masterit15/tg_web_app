@@ -58,9 +58,7 @@ export default {
   },
   methods: {
     filterItems(event, id) {
-      this.$emit("callBackEvents", id);
       let parent = event.target.closest(`.${this.listClass} .item`);
-      console.log(this.listClass);
       if (!parent.classList.contains("active")) {
         let mm = document.querySelectorAll(`.${this.listClass} .item`);
         mm.forEach((m) => m.classList.remove("active"));

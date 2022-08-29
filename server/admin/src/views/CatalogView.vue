@@ -1,6 +1,6 @@
 <template>
   <div class="page view_catalog csll">
-    <ScrollList list-class="catalog_cat_list" :items="category" :call-back-events="filterItems()"/>
+    <ScrollList list-class="catalog_cat_list" :items="category" @call-back-events="filterItems"/>
     <div class="catalog_head">
       <div class="catalog_head_start">
         <h3 class="page_title">{{ pageNow }}</h3>
@@ -10,7 +10,7 @@
       </div>
       <div class="catalog_head_mid">
         <transition name="fade">
-          <Filter v-show="isShow" v-on:back-params="filtered" />
+          <Filter v-show="isShow" @back-params="filtered" />
         </transition>
       </div>
       <div class="catalog_head_start">
@@ -24,7 +24,7 @@
     <div class="catalog_list">
       <div class="catalog_list_item" v-for="item in items" :key="item.id">
         <span class="catalog_list_item_status"><i class="fa fa-fire"></i></span>
-         <router-link :to="{ path: `/detail/${item.id}`}" class="catalog_list_item_media">
+         <router-link :to="{ path: `/detail/p=${item.id}`}" class="catalog_list_item_media">
           <img :src="item.img" alt="" class="catalog_list_item_media" />
         </router-link>
         <div class="catalog_list_item_content">
@@ -37,11 +37,7 @@
             <span class="catalog_list_item_weight">{{calcWeight(item.weight)}}</span>
             <div class="catalog_list_item_action">
               <span class="catalog_list_item_action_bay minus" @click="bayCount($event, 'minus', item)"><span></span></span>
-              <input
-                type="text"
-                name="count"
-                class="catalog_list_item_action_bay_count"
-              />
+              <span class="catalog_list_item_action_bay_count"></span>
               <span class="catalog_list_item_action_bay plus" @click="bayCount($event, 'plus', item)"><span></span></span>
             </div>
           </div>
@@ -85,10 +81,9 @@ export default {
     ...mapActions(['productEditorOpen']),
     filtered(params) {
       this.filterParams = params
-      console.log("filtered", params);
     },
     filterItems(id){
-          this.filterParams.cat = id
+      this.filterParams.cat = id
     },
     openEditor(){
       this.productEditorOpen(true)
