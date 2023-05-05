@@ -3,7 +3,8 @@ const mixins = {
   data () {
     return {
       displayNumber:0,
-      interval:false
+      interval:false,
+      total: 0
     }
   },
   watch: {
@@ -27,11 +28,9 @@ const mixins = {
       return this.$route.name;
     },
     totalPrice(){
-      let total = 0
-      this.cart.forEach(ce => {
-        total += ce.price * ce.count
-      });
-      return total
+      // console.log('asdfasdfdasasdfsadf', this.cart.map(ce =>ce.price * ce.count));
+      // this.displayNumber = this.cart.map(ce =>ce.price * ce.count)[0]
+      return this.cart.map(ce =>ce.price * ce.count)[0]
     }
   },
   methods: {
@@ -55,17 +54,17 @@ const mixins = {
       let parent = event.target.closest('.catalog_list_item_action')
       let minus = parent.querySelector('.minus')
       let input = parent.querySelector('.catalog_list_item_action_bay_count')
-      let value = Number(input.innerText) //== 0 ? 1 : Number(input.innerText)
+      let value = Number(input.value) //== 0 ? 1 : Number(input.innerText)
       const prd = {...product}
       if(param == 'plus'){
-        input.innerText = Number(value + 1)
+        input.value = Number(value + 1)
       }else{
-        input.innerText = Number(value - 1)
+        input.value = Number(value - 1)
       }
-      if(input.innerText > 0){
+      if(input.value > 0){
         input.classList.add('active')
         minus.classList.add('active')
-        prd.count = input.innerText
+        prd.count = input.value
         this.addCartProduct(prd)
       }else{
         input.classList.remove('active')

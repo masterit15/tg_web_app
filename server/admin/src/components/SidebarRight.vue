@@ -6,13 +6,19 @@
         <img :src="item.img" alt="" class="catalog_list_item_media" />
         <div class="catalog_list_item_content">
           <h3 class="catalog_list_item_title">{{item.title}}</h3>
-          <p class="catalog_list_item_desc">{{item.description}}</p>
+          <!-- <p class="catalog_list_item_desc">{{item.description}}</p> -->
           <div class="catalog_list_item_footer">
             <h2 class="catalog_list_item_price"><i class="fa fa-rub"></i> {{item.price}}</h2>
             <span class="catalog_list_item_weight">{{calcWeight(item.weight)}}</span>
             <div class="catalog_list_item_action">
               <span class="catalog_list_item_action_bay minus" @click="bayCount($event, 'minus', item)"><span></span></span>
-              <span class="catalog_list_item_action_bay_count"></span>
+              <input
+                type="text"
+                name="count"
+                class="catalog_list_item_action_bay_count"
+                :class="{active: Number(item.count) > 0}"
+                :value="item.count"
+              />
               <span class="catalog_list_item_action_bay plus" @click="bayCount($event, 'plus', item)"><span></span></span>
             </div>
           </div>

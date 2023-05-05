@@ -23,7 +23,6 @@ export default {
   },
   async updated() {
     await this.checkAuth();
-    console.log(this.isAuth);
     if (!this.isAuth) {
       this.$router.push("/auth");
     }

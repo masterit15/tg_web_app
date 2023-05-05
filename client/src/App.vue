@@ -36,7 +36,6 @@ export default {
     }
   },
   mounted() {
-    console.log();
     let user = {
                 id: 223971340,
                 first_name: "Shalva",

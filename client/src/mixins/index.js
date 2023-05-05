@@ -55,6 +55,8 @@ const mixins = {
       let input = parent.querySelector('.product_list_item_bay_count')
       let value = Number(input.value) //== 0 ? 1 : Number(input.value)
       const prd = {...product}
+      console.log({event, param, product});
+      
       if(param == 'plus'){
         input.value = Number(value + 1)
       }else{

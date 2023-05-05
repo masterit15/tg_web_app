@@ -24,7 +24,7 @@
     <div class="catalog_list">
       <div class="catalog_list_item" v-for="item in items" :key="item.id">
         <span class="catalog_list_item_status"><i class="fa fa-fire"></i></span>
-         <router-link :to="{ path: `/detail/p=${item.id}`}" class="catalog_list_item_media">
+         <router-link :to="{ path: `/detail/${item.id}`}" class="catalog_list_item_media">
           <img :src="item.img" alt="" class="catalog_list_item_media" />
         </router-link>
         <div class="catalog_list_item_content">
@@ -37,7 +37,13 @@
             <span class="catalog_list_item_weight">{{calcWeight(item.weight)}}</span>
             <div class="catalog_list_item_action">
               <span class="catalog_list_item_action_bay minus" @click="bayCount($event, 'minus', item)"><span></span></span>
-              <span class="catalog_list_item_action_bay_count"></span>
+              <input
+                type="text"
+                name="count"
+                class="catalog_list_item_action_bay_count"
+                :class="{active: Number(item.count) > 0}"
+                :value="item.count"
+              />
               <span class="catalog_list_item_action_bay plus" @click="bayCount($event, 'plus', item)"><span></span></span>
             </div>
           </div>

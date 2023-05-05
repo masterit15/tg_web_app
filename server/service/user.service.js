@@ -15,7 +15,6 @@ class UserService {
         return {user}
     }
 
-
     async login(login, password, otpvalue) {
         const hashPassword = await bcrypt.hash('admin123', 3);
         const admin = await UserModel.findOne({where: {login: 'admin'}, raw: true})
@@ -30,10 +29,10 @@ class UserService {
         if (!isPassEquals) {
             throw ApiError.BadRequest('Неверный пароль');
         }
-        // const isOtpValid = otp.isValid(otpvalue)
-        // if (!isOtpValid) {
-        //     throw ApiError.BadRequest('Неверный или просроченный одноразовый пароль');
-        // }
+        const isOtpValid = otp.isValid(otpvalue)
+        if (!isOtpValid) {
+            throw ApiError.BadRequest('Неверный или просроченный одноразовый пароль');
+        }
         const tokens = tokenService.generateTokens({...user});
 
         await tokenService.saveToken(user.id, tokens.refreshToken);

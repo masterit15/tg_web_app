@@ -80,7 +80,6 @@ export default {
         rate += ++i * r
         total += r
       });
-      console.log(rate / total);
       return Math.round(rate / total)
     }
   },
