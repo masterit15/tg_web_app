@@ -22,12 +22,12 @@ const corsOptions = {
   credentials: true,
   // origin: '*',
   origin: function (origin, callback) {
-    callback(null, true)
-    // if (whitelist.indexOf(origin) !== -1) {
-    //   callback(null, true)
-    // } else {
-    //   callback('Not allowed by CORS')
-    // }
+    // callback(null, true)
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback('Not allowed by CORS')
+    }
   }
 }
 import menuRoute from './router/menu.routes.js'

@@ -2,10 +2,11 @@
   "scripts": {
     "start": "NODE_ENV=production node --experimental-modules app.js",
     "server": "nodemon --experimental-modules index.js",
+    "client": "cd ../client && npm run serve",
     "admin": "npm run serve --prefix admin",
     "admin:install": "npm install --prefix web",
     "admin:build": "npm run build --prefix web",
-    "dev": "cross-env NODE_ENV=development concurrently \"npm run server\" \"npm run admin\""
+    "dev": "cross-env NODE_ENV=development concurrently \"npm run server\" \"npm run admin\" \"npm run client\""
   },
   "type": "module",
   "dependencies": {
